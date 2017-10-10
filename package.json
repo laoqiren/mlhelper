@@ -1,0 +1,20 @@
+{
+  "name": "mlhelper",
+  "version": "1.0.0",
+  "description": "tools for ML in JavaScript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ML",
+    "AI"
+  ],
+  "author": "laoqiren",
+  "license": "MIT",
+  "dependencies": {
+    "immutable": "^3.8.2",
+    "mathjs": "^3.16.4",
+    "sylvester": "0.0.21"
+  }
+}
