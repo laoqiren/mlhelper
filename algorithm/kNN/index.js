@@ -5,7 +5,7 @@ const {Repeat,List} = require('immutable');
 /**
  *  归一化数据
  * 
- * @param {Class Matrix} 训练数据集
+ * @param {Class Matrix} dataSet 训练数据集
  * @returns {Array} [归一化后的数据,各个特征的范围，各个特征的最小值]
  */
 function autoNormal(dataSet){
@@ -33,7 +33,7 @@ class kNN {
     /**
      * kNN算法主体
      * 
-     * @param {Array} 测试数据
+     * @param {Array} inx 测试数据
      * @param {any} K值
      * @returns {any}
      * @memberof kNN

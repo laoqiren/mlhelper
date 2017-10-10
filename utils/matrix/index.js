@@ -8,6 +8,15 @@ class Matrix {
     toArray(){
         return this.arr;
     }
+    /**
+     * 针对两个矩阵同一行同一列的值对应进行计算
+     * 
+     * @param {Class Matrix} arrA 矩阵A
+     * @param {Class Matrix} arrB 矩阵B
+     * @param {String} operator  操作，'+'|'-'|'*'|'\'
+     * @returns {Class Matrix} 计算后的矩阵
+     * @memberof Matrix
+     */
     zipWith(arrA,arrB,operator){
         let result = [];
         switch(operator){
@@ -64,6 +73,13 @@ class Matrix {
     size(){
         return [this.arr.length,this.arr[0].length];
     }
+    /**
+     * 矩阵同一行进行相加
+     * 
+     * @param {number} [axis=1] 
+     * @returns {Array}
+     * @memberof Matrix
+     */
     sum(axis=1){
         let result = [];
         for(let row of this.arr){
@@ -72,6 +88,7 @@ class Matrix {
         }
         return result;
     }
+    // 矩阵每一列的最小值
     min(){
         let cols = this.arr[0].length;
         let result = [];
@@ -92,6 +109,7 @@ class Matrix {
         }
         return result;
     }
+    // 初始化零矩阵
     static zeros(r,c=2){
         return new Matrix(math.zeros(r,c)._data);
     }
