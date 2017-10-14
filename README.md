@@ -26,6 +26,24 @@ let result = knn.classify([1.1,0.8],4);
 console.log(result) // 'A'
 ```
 
+DT(ID3):
+```js
+const mlhelper = require('mlhelper'),
+    DT = mlhelper.algorithm.DT,
+    parser = mlhelper.utils.fileParser;
+const path = require('path');
+
+let dataSet = parser.parseFile(path.join(__dirname,'./dt.txt'));
+
+let labels = ['age','prescript','astigmatic','tearRate']
+let dt = new DT(dataSet,labels);
+
+let result = dt.classify(labels,["young","myope","no","reduced"])
+
+console.log(dt.getTree()); // { tearRate: { reduced: 'no lenses', normal: { astigmatic: [Object] } } }
+console.log(result); // no lenses
+```
+
 **Utils**
 
 Matrix:
