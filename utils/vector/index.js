@@ -5,7 +5,7 @@ class Vector {
         this.arr = arr;
     }
     argSort(){
-        let list = List(this.arr).toArray();
+        let list = [...this.arr];
         let result = list
             .map((v,i)=>[v,i])
             .sort(([v1],[v2])=>v1>v2)

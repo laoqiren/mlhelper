@@ -1,3 +1,7 @@
 const kNN = require('./kNN/index');
+const DT = require('./DT/index');
 
-exports.kNN = kNN;
+module.exports = {
+    kNN,
+    DT
+}

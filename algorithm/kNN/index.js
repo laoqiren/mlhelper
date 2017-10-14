@@ -26,7 +26,7 @@ class kNN {
     constructor(dataSet,labels){
         let [normalDataSet,ranges,minVals] = autoNormal(new Matrix(dataSet)); 
         this.dataSet = normalDataSet;
-        this.labels = new Matrix(labels);
+        this.labels = new Vector(labels);
         this.ranges = ranges;
         this.minVals = minVals;
     }
