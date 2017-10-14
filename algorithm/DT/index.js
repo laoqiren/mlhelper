@@ -112,6 +112,14 @@ function createTree(dataSet,labels){
     return resultTree;
 }
 
+/**
+ * 判断测试数据分类
+ * 
+ * @param {Object} inputTree 决策树对象
+ * @param {Array} featLabels 特征名称向量
+ * @param {Array} testVec 测试向量
+ * @returns 测试数据的分类
+ */
 function classify(inputTree,featLabels,testVec){
     let firstStr = Object.keys(inputTree)[0],
         secondDict = inputTree[firstStr],
@@ -141,9 +149,11 @@ class DT {
     getTree(){
         return this.tree;
     }
+    // 根据实例构造的决策树进行测试
     classify(featLabels,testVec){
         return classify(this.tree,featLabels,testVec);
     }
+    // 将决策树存入文件
     storeTree(filePath){
         let jsonTree = JSON.stringify(this.tree);
         return new Promise((resolve,reject)=>{
@@ -155,6 +165,7 @@ class DT {
             });
         })
     }
+    // 根据提供的决策树进行测试，静态方法，无需实例化构造决策树
     static classifyFromTree(inputTree,featLabels,testVec){
         return classify(inputTree,featLabels,testVec);
     }
