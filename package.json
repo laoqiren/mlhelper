@@ -1,6 +1,6 @@
 {
   "name": "mlhelper",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "tools for ML in JavaScript",
   "main": "index.js",
   "scripts": {
