@@ -72,6 +72,30 @@ let v = new Vector([5,10,7,1]);
 console.log(v.argSort()) // [ 3, 0, 2, 1 ]
 ```
 
+fileParser:
+```js
+const parser = require('mlhelper').utils.fileParser;
+
+let dt = parser.read_csv(path.join(__dirname,'./train.csv'),0,',',0);
+let labels = dt.getClasses();
+let dataSet =dt.drop('quality').values;
+```
+
+graph tools:
+```js
+const charts = require('mlhelper').utils.charts;
+let knn = new kNN(dataSet,labels);
+let inx = [7.0,0.27,0.36,20.7,0.045,45.0,170.0,1.001,3.0,0.45,8.8],
+    normalInx = knn.autoNormalVector(inx);
+
+console.log(knn.classify(inx,100)); // 6
+charts.drawkNN(kNN.autoNormal(dataSet),labels,normalInx,"400px","300px",15);
+```
+result:
+
+![http://7xsi10.com1.z0.glb.clouddn.com/kNN.png](http://7xsi10.com1.z0.glb.clouddn.com/kNN.png)
+
+
 ## Docs
 A variety of algorithms and tools are still constantly improved, complete API documents, please look forward to
 ## LICENSE
