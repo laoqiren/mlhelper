@@ -3,14 +3,14 @@ Algorithms and utils for Machine Learning in JavaScript.
 
 ## Example
 
-**Install**
+### Install
 ```
 $ npm install mlhelper
 ```
 
-**Algorithm**
+### Algorithm
 
-kNN: 
+**kNN:** 
 ```js
 const kNN = require('mlhelper').algorithm.kNN;
 
@@ -26,7 +26,7 @@ let result = knn.classify([1.1,0.8],4);
 console.log(result) // 'A'
 ```
 
-DT(ID3):
+**DT(ID3):**
 ```js
 const mlhelper = require('mlhelper'),
     DT = mlhelper.algorithm.DT,
@@ -44,9 +44,9 @@ console.log(dt.getTree()); // { tearRate: { reduced: 'no lenses', normal: { asti
 console.log(result); // no lenses
 ```
 
-**Utils**
+### Utils
 
-Matrix:
+**Matrix:**
 ```js
 const Matrix = require('mlhelper').utils.Matrix;
 
@@ -64,7 +64,7 @@ console.log(m2.sub(m1)) // Matrix { arr: [ [ 1, 0, 3 ], [ 0, -3, 0 ] ] }
 console.log(m1.mult(m2)) // Matrix { arr: [ [ 2, 4, 18 ], [ 9, 4, 25 ] ] }
 ```
 
-Vector:
+**Vector:**
 ```js
 const Vector = require('mlhelper').utils.Vector;
 
@@ -72,7 +72,7 @@ let v = new Vector([5,10,7,1]);
 console.log(v.argSort()) // [ 3, 0, 2, 1 ]
 ```
 
-fileParser:
+**fileParser:**
 ```js
 const parser = require('mlhelper').utils.fileParser;
 
@@ -81,7 +81,7 @@ let labels = dt.getClasses();
 let dataSet =dt.drop('quality').values;
 ```
 
-graph tools:
+**graph tools:**
 ```js
 const charts = require('mlhelper').utils.charts;
 let knn = new kNN(dataSet,labels);
@@ -91,7 +91,7 @@ let inx = [7.0,0.27,0.36,20.7,0.045,45.0,170.0,1.001,3.0,0.45,8.8],
 console.log(knn.classify(inx,100)); // 6
 charts.drawkNN(kNN.autoNormal(dataSet),labels,normalInx,"400px","300px",15);
 ```
-result:
+This will open your browser and draw dispersive points for kNN:
 
 ![http://7xsi10.com1.z0.glb.clouddn.com/kNN.png](http://7xsi10.com1.z0.glb.clouddn.com/kNN.png)
 
