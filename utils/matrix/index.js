@@ -41,6 +41,7 @@ class Matrix {
                     result[i] = [];
                     for(let j=0; j<arrA[0].length; j++){
                         result[i].push(arrA[i][j] * arrB[i][j]);
+                        
                     }
                 }
                 break;
@@ -92,8 +93,10 @@ class Matrix {
     min(){
         let cols = this.arr[0].length;
         let result = [];
+        
         for(let i=0; i<cols; i++){
             let col = this.arr.map(v=>v[i]);
+            col = col.filter(v=> typeof v === 'number')
             let colMin = Math.min(...col);
             result.push(colMin);
         }
@@ -104,6 +107,7 @@ class Matrix {
         let result = [];
         for(let i=0; i<cols; i++){
             let col = this.arr.map(v=>v[i]);
+            col = col.filter(v=> typeof v === 'number')
             let colMax = Math.max(...col);
             result.push(colMax);
         }

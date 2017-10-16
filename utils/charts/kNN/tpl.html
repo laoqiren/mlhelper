@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{{title}}</title>
+    <!-- 引入 echarts.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/3.7.2/echarts-en.min.js"></script>
+</head>
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="width: {{width}};height:{{height}};"></div>
+    <script type="text/javascript">
+        var myChart = echarts.init(document.getElementById('main'));
+        var getRandomColor = function(){
+            return '#'+('00000'+(Math.random()*0x1000000<<0).toString(16)).slice(-6);
+        }
+    const data = {{ data }};
+    const labels = {{classes}};
+    let colors = [];
+    for(var i=0; i<labels.length; i++){
+        colors.push(getRandomColor())
+    }
+    let series = data.map((v,i)=>{
+        return {
+            name: labels[i],
+            data: data[i],
+            type: i===data.length-1 ? 'line':'scatter',
+            symbolSize: function (data) {
+                return {{size}}
+            },
+            label: {
+                emphasis: {
+                    show: true,
+                    formatter: function (param) {
+                        return param.data[1];
+                    },
+                    position: 'top'
+                }
+            },
+            itemStyle: {
+                normal: {
+                    shadowBlur: 10,
+                    shadowColor: 'rgba(120, 36, 50, 0.5)',
+                    shadowOffsetY: 5,
+                    color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
+                        offset: 0,
+                        color: colors[i]
+                    }, {
+                        offset: 1,
+                        color: colors[i]
+                    }])
+                }
+            }
+        }
+    })
+
+    option = {
+        backgroundColor: new echarts.graphic.RadialGradient(0.3, 0.3, 0.8, [{
+            offset: 0,
+            color: '#f7f8fa'
+        }, {
+            offset: 1,
+            color: '#cdd0d5'
+        }]),
+        title: {
+            text: 'kNN算法图'
+        },
+        legend: {
+            right: 10,
+            data: labels
+        },
+        xAxis: {
+            splitLine: {
+                lineStyle: {
+                    type: 'dashed'
+                }
+            }
+        },
+        yAxis: {
+            splitLine: {
+                lineStyle: {
+                    type: 'dashed'
+                }
+            },
+            scale: true
+        },
+        series: series
+    };
+    myChart.setOption(option);
+    </script>
+</body>
+</html>

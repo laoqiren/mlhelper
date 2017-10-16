@@ -13,8 +13,11 @@
   "author": "laoqiren",
   "license": "MIT",
   "dependencies": {
+    "express": "^4.16.2",
     "immutable": "^3.8.2",
+    "lodash": "^4.17.4",
     "mathjs": "^3.16.4",
+    "swig": "^1.4.2",
     "sylvester": "0.0.21"
   }
 }

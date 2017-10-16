@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{{title}}</title>
+    <!-- 引入 echarts.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/3.7.2/echarts-en.min.js"></script>
+</head>
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="width: {{width}};height:{{height}};"></div>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        {{jscontent}}
+    </script>
+</body>
+</html>

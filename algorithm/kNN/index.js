@@ -8,27 +8,29 @@ const {Repeat,List} = require('immutable');
  * @param {Class Matrix} dataSet 训练数据集
  * @returns {Array} [归一化后的数据,各个特征的范围，各个特征的最小值]
  */
-function autoNormal(dataSet){
+function autoNormal(dataSet_){
+    let dataSet = new Matrix(dataSet_);
     let minVals = dataSet.min(0); // 每个特征的最小值
     let maxVals = dataSet.max(0); // 每个特征的最大值
     let ranges = new Vector(maxVals).zipWith((a,b)=>a-b,new Vector(minVals)); // 每个特征的范围
+    
     let normalDataSet = Matrix.zeros(...dataSet.size());
     let setSize = dataSet.size()[0]; // 训练集实例数
-
+    
     normalDataSet = dataSet.sub(new Matrix(Repeat(minVals,setSize).toArray())); //分子为每个特征原始值减去该特征最小值
 
     normalDataSet = normalDataSet.divide(new Matrix(Repeat(ranges,setSize).toArray())); // 上式得到的每个特征值除以该特征范围
-
-    return [normalDataSet,ranges,minVals];
+    return [normalDataSet.arr,ranges,minVals];
 }
 
 class kNN {
     constructor(dataSet,labels){
-        let [normalDataSet,ranges,minVals] = autoNormal(new Matrix(dataSet)); 
-        this.dataSet = normalDataSet;
+        let [normalDataSet,ranges,minVals] = autoNormal(dataSet); 
+        this.dataSet = new Matrix(normalDataSet);
         this.labels = new Vector(labels);
         this.ranges = ranges;
         this.minVals = minVals;
+        
     }
     /**
      * kNN算法主体
@@ -38,16 +40,14 @@ class kNN {
      * @returns {any}
      * @memberof kNN
      */
-    classify(inx,k){
+    classify(inx_,k){
         const setSize = this.dataSet.size()[0];
         if(k > setSize) {
             k = setSize;
         }
 
         //归一化测试数据
-        inx = new Vector(inx).zipWith((a,b)=>a - b,new Vector(this.minVals));
-        inx = new Vector(inx).zipWith((a,b)=>a/b,new Vector(this.ranges));
-
+        let inx = this.autoNormalVector(inx_);
         // 求测试数据与每一个训练数据的距离
         let diffMat = new Matrix(Repeat(inx,setSize).toArray()).sub(this.dataSet); // 建立与训练数据同大小的矩阵，再一一对应相减
 
@@ -70,6 +70,18 @@ class kNN {
 
         // 返回实例最多的分类
         return sortedClassCount[0]
+    }
+    autoNormalVector(inx_){
+        let inx = [...inx_];
+        let minVals = this.minVals,
+            ranges = this.ranges;
+        
+        inx = new Vector(inx).zipWith((a,b)=>a - b,new Vector(minVals));
+        inx = new Vector(inx).zipWith((a,b)=>a/b,new Vector(ranges));
+        return inx;
+    }
+    static autoNormal(dataSet){
+        return autoNormal(dataSet)[0];
     }
 }
 

@@ -14,6 +14,7 @@ class Vector {
     }
     zipWith(func,b){
         let result = this.arr.map((v,i)=>func(v,b.arr[i]))
+      //  console.log(result)
         return result;
     }
 }
