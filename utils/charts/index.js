@@ -28,7 +28,7 @@ function drawkNN(dataSet_,labels_,inx,{
     classes.push('test');
     data.push([inx]);
     let html = renderFile(path.resolve(__dirname,'kNN','tpl.html'),{
-        title: 'kNN图',
+        title: "Scatter plot for kNN",
         width,
         height,
         size,
