@@ -1,3 +1,4 @@
+// @ts-check
 const Matrix = require('../../utils/matrix/index');
 const Vector = require('../../utils/vector/index');
 const {Repeat,List} = require('immutable');
@@ -5,11 +6,10 @@ const {Repeat,List} = require('immutable');
 /**
  *  归一化数据
  * 
- * @param {Class Matrix} dataSet 训练数据集
- * @returns {Array} [归一化后的数据,各个特征的范围，各个特征的最小值]
+ * @param {object} Matrix: dataSet 训练数据集
+ * @returns {array} [归一化后的数据,各个特征的范围，各个特征的最小值]
  */
-function autoNormal(dataSet_){
-    let dataSet = new Matrix(dataSet_);
+function autoNormal(dataSet){
     let minVals = dataSet.min(0); // 每个特征的最小值
     let maxVals = dataSet.max(0); // 每个特征的最大值
     let ranges = new Vector(maxVals).zipWith((a,b)=>a-b,new Vector(minVals)); // 每个特征的范围
@@ -25,7 +25,7 @@ function autoNormal(dataSet_){
 
 class kNN {
     constructor(dataSet,labels){
-        let [normalDataSet,ranges,minVals] = autoNormal(dataSet); 
+        let [normalDataSet,ranges,minVals] = autoNormal(new Matrix(dataSet)); 
         this.dataSet = new Matrix(normalDataSet);
         this.labels = new Vector(labels);
         this.ranges = ranges;
@@ -35,8 +35,8 @@ class kNN {
     /**
      * kNN算法主体
      * 
-     * @param {Array} inx 测试数据
-     * @param {any} K值
+     * @param {array} inx 测试数据
+     * @param {number} K值
      * @returns {any}
      * @memberof kNN
      */
@@ -81,7 +81,7 @@ class kNN {
         return inx;
     }
     static autoNormal(dataSet){
-        return autoNormal(dataSet)[0];
+        return autoNormal(new Matrix(dataSet))[0];
     }
 }
 

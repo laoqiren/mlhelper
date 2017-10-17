@@ -1,3 +1,4 @@
+// @ts-check
 const Matrix = require('../../utils/matrix/index');
 const Vector = require('../../utils/vector/index');
 const fs = require('fs');
@@ -28,10 +29,10 @@ function calShannoEnt(dataSet){
 /**
  * 划分数据集
  * 
- * @param {Array} dataSet 原始数据集 
- * @param {Int} axis 划分特征
+ * @param {array} dataSet 原始数据集 
+ * @param {number} axis 划分特征
  * @param {any} value 特征值 
- * @returns {Array} 划分后的数据集
+ * @returns {array} 划分后的数据集
  */
 function splitDataSet(dataSet,axis,value){
     let retDataSet = dataSet.reduce((pre,cur)=>{
@@ -60,7 +61,7 @@ function chooseBestLabelToSplit(dataSet){
                 prob = subDataSet.length/dataSet.length;
             newEntropy += prob * calShannoEnt(subDataSet);
         });
-        infoGain = baseEntropy - newEntropy;
+        let infoGain = baseEntropy - newEntropy;
         
         if(infoGain > bestInfoGain){
             bestInfoGain = infoGain;
@@ -115,9 +116,9 @@ function createTree(dataSet,labels){
 /**
  * 判断测试数据分类
  * 
- * @param {Object} inputTree 决策树对象
- * @param {Array} featLabels 特征名称向量
- * @param {Array} testVec 测试向量
+ * @param {object} inputTree 决策树对象
+ * @param {array} featLabels 特征名称向量
+ * @param {array} testVec 测试向量
  * @returns 测试数据的分类
  */
 function classify(inputTree,featLabels,testVec){
