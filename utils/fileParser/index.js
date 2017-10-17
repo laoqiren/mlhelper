@@ -70,3 +70,30 @@ exports.read_csv = function(filePath,{
     }
     return new CSV(headerLine,datasWithoutIndex);
 }
+
+exports.write_csv = function(filePath,data,{
+    index=false,
+    header=[],
+    delimiter=','
+}={}){
+    let dataToWrite = [...data];
+    if(index !== false){
+        dataToWrite.forEach((v,i)=>{
+            v.unshift(i);
+        });
+    }
+    if(Array.isArray(header) && header.length >= 1){
+        dataToWrite.unshift(header);
+    }
+    dataToWrite = dataToWrite.map(row=>row.map(col=>col.toString()));
+    let contentToWrite = '';
+
+    dataToWrite.forEach(v=>{
+        contentToWrite += v.join(delimiter);
+        contentToWrite += '\n';
+    });
+    
+    fs.writeFileSync(filePath,contentToWrite,{
+        encoding: 'utf-8'
+    });
+}
