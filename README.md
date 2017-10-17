@@ -1,4 +1,7 @@
 # mlhelper
+[![npm](https://img.shields.io/npm/v/mlhelper.svg?style=flat-square)](https://github.com/laoqiren/mlhelper)
+[![npm](https://img.shields.io/npm/l/mlhelper.svg?style=flat-square)](https://github.com/laoqiren/mlhelper)
+
 Algorithms and utils for Machine Learning in JavaScript.
 
 ## Example
