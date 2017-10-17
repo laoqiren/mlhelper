@@ -10,7 +10,12 @@ function renderFile(template,data){
         locals: data
     });
 }
-function drawkNN(dataSet_,labels_,inx,width="600px",height="400px",size=20){
+
+function drawkNN(dataSet_,labels_,inx,{
+    width="600px",
+    height="400px",
+    size=20
+}={}){
     let dataSet = [...dataSet_];
     let labels = [...labels_];
     let data = [];
