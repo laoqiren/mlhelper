@@ -2,9 +2,9 @@ import {List,Repeat} from 'immutable';
 import * as math from 'mathjs';
 
 class Matrix {
-    constructor(public arr: ReadonlyArray<ReadonlyArray<number>>){}
+    constructor(public arr: Array<Array<number>>){}
     
-    toArray(): ReadonlyArray<ReadonlyArray<number>>{
+    toArray(): Array<Array<number>>{
         return this.arr;
     }
     /**
@@ -16,7 +16,7 @@ class Matrix {
      * @returns {Class Matrix} 计算后的矩阵
      * @memberof Matrix
      */
-    zipWith(arrA: ReadonlyArray<ReadonlyArray<number>>,arrB: ReadonlyArray<ReadonlyArray<number>>,operator: string): Matrix{
+    zipWith(arrA: Array<Array<number>>,arrB: Array<Array<number>>,operator: string): Matrix{
         let result = [];
         switch(operator){
             case '+':
@@ -89,7 +89,7 @@ class Matrix {
         return result;
     }
     // 矩阵每一列的最小值
-    min(): Array<number>{
+    min(axis?: number): Array<number>{
         let cols = this.arr[0].length;
         let result = [];
         
@@ -101,7 +101,7 @@ class Matrix {
         }
         return result;
     }
-    max(): Array<number>{
+    max(axis?: number): Array<number>{
         let cols = this.arr[0].length;
         let result = [];
         for(let i=0; i<cols; i++){

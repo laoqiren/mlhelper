@@ -9,7 +9,7 @@ import {Repeat,List} from 'immutable';
  * @param {object} Matrix: dataSet 训练数据集
  * @returns {array} [归一化后的数据,各个特征的范围，各个特征的最小值]
  */
-function autoNormal(dataSet){
+function autoNormal(dataSet: Matrix){
     let minVals = dataSet.min(0); // 每个特征的最小值
     let maxVals = dataSet.max(0); // 每个特征的最大值
     let ranges = new Vector(maxVals).zipWith((a,b)=>a-b,new Vector(minVals)); // 每个特征的范围
@@ -24,7 +24,12 @@ function autoNormal(dataSet){
 }
 
 class kNN {
-    constructor(dataSet,labels){
+    private dataSet: Matrix;
+    private labels: Vector;
+    private ranges: Array<number>;
+    private minVals: Array<number>;
+
+    constructor(dataSet: Array<Array<number>>,labels: Array<any>){
         let [normalDataSet,ranges,minVals] = autoNormal(new Matrix(dataSet)); 
         this.dataSet = new Matrix(normalDataSet);
         this.labels = new Vector(labels);
@@ -40,7 +45,7 @@ class kNN {
      * @returns {any}
      * @memberof kNN
      */
-    classify(inx_,k){
+    classify(inx_: Array<number>,k: number): any{
         const setSize = this.dataSet.size()[0];
         if(k > setSize) {
             k = setSize;
@@ -71,7 +76,7 @@ class kNN {
         // 返回实例最多的分类
         return sortedClassCount[0]
     }
-    autoNormalVector(inx_){
+    autoNormalVector(inx_: Array<number>): Array<number>{
         let inx = [...inx_];
         let minVals = this.minVals,
             ranges = this.ranges;
@@ -80,7 +85,7 @@ class kNN {
         inx = new Vector(inx).zipWith((a,b)=>a/b,new Vector(ranges));
         return inx;
     }
-    static autoNormal(dataSet){
+    static autoNormal(dataSet: Array<Array<number>>): Array<Array<number>>{
         return autoNormal(new Matrix(dataSet))[0];
     }
 }

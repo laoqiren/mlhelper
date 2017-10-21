@@ -17,8 +17,6 @@ let knn = new kNN(dataSet,labels);
 
 let dataToTest = parser.read_csv(path.join(__dirname,'./test.csv'),{
     index_col: 0,
-    delimiter: ',',
-    header: 0,
     dataType: 'number'
 }).drop('quality').values;
 

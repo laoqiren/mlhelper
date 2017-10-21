@@ -2,16 +2,16 @@ import * as fs from 'fs';
 import * as _ from 'lodash';
 
 interface ReadCsvConfig {
-    index_col: boolean | number;
-    delimiter: string;
-    header: Array<string> | number;
-    dataType: string;
+    index_col?: boolean | number;
+    delimiter?: string;
+    header?: Array<string> | number;
+    dataType?: string;
 }
 
 interface WriteCsvConfig {
-    index: boolean;
-    header: any[];
-    delimiter: string;
+    index?: boolean;
+    header?: any[];
+    delimiter?: string;
 }
 
 export function parseFile(filePath:string){
@@ -24,10 +24,10 @@ export function parseFile(filePath:string){
 
 class CSV {
     values: Array<Array<any>>
-    constructor(public headerLine: ReadonlyArray<string>,datasWithoutIndex: any[][]){
+    constructor(public headerLine: Array<string>,datasWithoutIndex: Array<Array<any>>){
         this.values = datasWithoutIndex;
     }
-    getHeader(): ReadonlyArray<string>{
+    getHeader(): Array<string>{
         return this.headerLine;
     }
     drop(label: string | number): CSV{

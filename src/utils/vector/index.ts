@@ -1,7 +1,7 @@
 import {List,Repeat} from 'immutable';
 
 class Vector {
-    constructor(public arr: ReadonlyArray<number>){
+    constructor(public arr: Array<number>){
     }
     argSort(): number[]{
         let list = [...this.arr];
