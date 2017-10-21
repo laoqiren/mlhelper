@@ -2,10 +2,14 @@
 import * as fs from 'fs';
 import {Repeat,List} from 'immutable';
 
+interface ClassCount {
+    [index: string]: number;
+}
+
 // 计算香农熵
 function calShannoEnt(dataSet: Array<Array<any>>): number{
     let numEntries = dataSet.length;
-    let labelCounts = {};
+    let labelCounts:ClassCount = {};
 
     dataSet.forEach(v=>{
         let label = v[v.length-1];
@@ -72,7 +76,7 @@ function chooseBestLabelToSplit(dataSet: Array<Array<any>>): number{
 
 // 多数决策，当子数据集只有一个特征，且各个实例所属分类仍旧不同时调用此方法
 function majorityCnt(classList: Array<string>): string{
-    let classCount = {};
+    let classCount:ClassCount = {};
     classList.forEach((v,i)=>{
         if(v in classCount){
             return classCount[v] += 1;

@@ -3,6 +3,9 @@ import Matrix from '../../utils/matrix/index';
 import Vector from '../../utils/vector/index';
 import {Repeat,List} from 'immutable';
 
+interface ClassCount {
+    [index: string]: number;
+}
 /**
  *  归一化数据
  * 
@@ -61,7 +64,7 @@ class kNN {
         let sortedDistanceIndicies = (new Vector(distances)).argSort(); // 与各个训练数据的距离排序的下标
 
         // 统计每个距离最近前K个值里各个分类的数量
-        let classCount = {};
+        let classCount:ClassCount = {};
         for(let i=0; i<k; i++){
             let voteIlable = this.labels.arr[sortedDistanceIndicies[i]];
             if(classCount[voteIlable]) {
