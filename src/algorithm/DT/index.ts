@@ -1,8 +1,6 @@
 // @ts-check
-const Matrix = require('../../utils/matrix/index');
-const Vector = require('../../utils/vector/index');
-const fs = require('fs');
-const {Repeat,List} = require('immutable');
+import * as fs from 'fs';
+import {Repeat,List} from 'immutable';
 
 // 计算香农熵
 function calShannoEnt(dataSet){
@@ -172,4 +170,4 @@ class DT {
     }
 }
 
-module.exports = DT;
+export default DT;

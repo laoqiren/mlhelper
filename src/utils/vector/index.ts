@@ -1,22 +1,22 @@
-const {List,Repeat} = require('immutable');
+import {List,Repeat} from 'immutable';
 
 class Vector {
-    constructor(arr){
-        this.arr = arr;
+    constructor(public arr: ReadonlyArray<number>){
     }
-    argSort(){
+    argSort(): number[]{
         let list = [...this.arr];
         let result = list
             .map((v,i)=>[v,i])
             .sort(([v1],[v2])=>v1>v2)
             .map(([,i])=>i);
+
         return result;
     }
-    zipWith(func,b){
+    zipWith(func: Function,b): Array<number>{
         let result = this.arr.map((v,i)=>func(v,b.arr[i]))
       //  console.log(result)
         return result;
     }
 }
 
-module.exports = Vector;
+export default Vector;

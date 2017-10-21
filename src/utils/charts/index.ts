@@ -1,9 +1,9 @@
-const server = require('./server')
-const path = require('path');
-const fs = require('fs');
-const swig = require('swig');
+import server from './server';
+import * as path from 'path';
+import * as fs from 'fs';
+import * as swig from 'swig';
 
-function renderFile(template,data){
+export function renderFile(template: string,data: object){
     return swig.render(fs.readFileSync(template).toString(),{
         filename: template,
         autoescape: false,
@@ -11,11 +11,17 @@ function renderFile(template,data){
     });
 }
 
-function drawkNN(dataSet_,labels_,inx,{
+interface KnnConfig {
+    width: string;
+    height: string;
+    size: number;
+}
+
+export function drawkNN(dataSet_: Array<Array<any>>,labels_: Array<number>,inx: Array<number>,{
     width="600px",
     height="400px",
     size=20
-}={}){
+}={} as KnnConfig){
     let dataSet = [...dataSet_];
     let labels = [...labels_];
     let data = [];
@@ -37,5 +43,3 @@ function drawkNN(dataSet_,labels_,inx,{
     });
     server(html)
 }
-
-exports.drawkNN = drawkNN;

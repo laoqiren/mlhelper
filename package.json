@@ -2,7 +2,7 @@
   "name": "mlhelper",
   "version": "0.1.0",
   "description": "tools for ML in JavaScript",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -19,5 +19,16 @@
     "mathjs": "^3.16.4",
     "swig": "^1.4.2",
     "sylvester": "0.0.21"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.78",
+    "@types/node": "^8.0.46",
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^7.0.0",
+    "gulp-sourcemaps": "^2.6.1",
+    "gulp-typescript": "^3.2.2",
+    "typescript": "^2.5.3"
   }
 }

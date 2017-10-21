@@ -1,7 +1,7 @@
 // @ts-check
-const Matrix = require('../../utils/matrix/index');
-const Vector = require('../../utils/vector/index');
-const {Repeat,List} = require('immutable');
+import Matrix from '../../utils/matrix/index';
+import Vector from '../../utils/vector/index';
+import {Repeat,List} from 'immutable';
 
 /**
  *  归一化数据
@@ -85,4 +85,4 @@ class kNN {
     }
 }
 
-module.exports = kNN;
+export default kNN;

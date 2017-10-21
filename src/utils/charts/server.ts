@@ -1,8 +1,8 @@
-const express = require('express');
-const c = require('child_process');
+import * as express from 'express';
+import * as c from 'child_process';
 
 
-module.exports = function(html){
+export default function(html){
     const app = express();
     app.use('/',(req,res,next)=>{
         res.set('Content-Type', 'text/html');

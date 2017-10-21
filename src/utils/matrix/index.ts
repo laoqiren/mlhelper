@@ -1,11 +1,10 @@
-const {List,Repeat} = require('immutable');
-const math = require('mathjs');
+import {List,Repeat} from 'immutable';
+import * as math from 'mathjs';
 
 class Matrix {
-    constructor(arr){
-        this.arr = arr;
-    }
-    toArray(){
+    constructor(public arr: ReadonlyArray<ReadonlyArray<number>>){}
+    
+    toArray(): ReadonlyArray<ReadonlyArray<number>>{
         return this.arr;
     }
     /**
@@ -17,7 +16,7 @@ class Matrix {
      * @returns {Class Matrix} 计算后的矩阵
      * @memberof Matrix
      */
-    zipWith(arrA,arrB,operator){
+    zipWith(arrA: ReadonlyArray<ReadonlyArray<number>>,arrB: ReadonlyArray<ReadonlyArray<number>>,operator: string): Matrix{
         let result = [];
         switch(operator){
             case '+':
@@ -59,19 +58,19 @@ class Matrix {
         }
         return new Matrix(result);
     }
-    sub(toSub){
+    sub(toSub: Matrix): Matrix{
         return this.zipWith(this.arr,toSub.arr,'-');
     }
-    add(toAdd){
+    add(toAdd: Matrix): Matrix{
         return this.zipWith(this.arr,toAdd.arr,'+')
     }
-    mult(toMult){
+    mult(toMult: Matrix): Matrix{
         return this.zipWith(this.arr,toMult.arr,'*')
     }
-    divide(toDivide){
+    divide(toDivide: Matrix): Matrix{
         return this.zipWith(this.arr,toDivide.arr,'/');
     }
-    size(){
+    size(): [number,number]{
         return [this.arr.length,this.arr[0].length];
     }
     /**
@@ -81,7 +80,7 @@ class Matrix {
      * @returns {Array}
      * @memberof Matrix
      */
-    sum(axis=1){
+    sum(axis:number=1): Array<number>{
         let result = [];
         for(let row of this.arr){
             let rowSum = row.reduce((pre,cur)=>pre+cur);
@@ -90,7 +89,7 @@ class Matrix {
         return result;
     }
     // 矩阵每一列的最小值
-    min(){
+    min(): Array<number>{
         let cols = this.arr[0].length;
         let result = [];
         
@@ -102,7 +101,7 @@ class Matrix {
         }
         return result;
     }
-    max(){
+    max(): Array<number>{
         let cols = this.arr[0].length;
         let result = [];
         for(let i=0; i<cols; i++){
@@ -114,9 +113,9 @@ class Matrix {
         return result;
     }
     // 初始化零矩阵
-    static zeros(r,c=2){
+    static zeros(r: number,c: number=2): Matrix{
         return new Matrix(math.zeros(r,c)._data);
     }
 }
 
-module.exports = Matrix;
+export default Matrix;

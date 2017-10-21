@@ -1,0 +1,5 @@
+node_modules/
+tslint.json
+gulpfile.js
+tsconfig.json
+dist/**/*.js.map

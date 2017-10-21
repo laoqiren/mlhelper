@@ -1,0 +1,20 @@
+{
+    "files": [
+        "src/**/*.ts"
+    ],
+    "compilerOptions": {
+        "module": "commonjs",
+        "removeComments": true,
+        "noImplicitAny": true,
+        "allowJs": true,
+        "target": "es2015",
+        "sourceMap": true,
+        "types": [
+            "node",
+            "lodash"
+        ]
+    },
+    "exclude": [
+        "node_modules"
+    ]
+}

@@ -1,7 +1,20 @@
-const fs = require('fs');
-const _ = require('lodash');
+import * as fs from 'fs';
+import * as _ from 'lodash';
 
-exports.parseFile = function(filePath){
+interface ReadCsvConfig {
+    index_col: boolean | number;
+    delimiter: string;
+    header: Array<string> | number;
+    dataType: string;
+}
+
+interface WriteCsvConfig {
+    index: boolean;
+    header: any[];
+    delimiter: string;
+}
+
+export function parseFile(filePath:string){
     let content = fs.readFileSync(filePath,{encoding: 'utf-8'});
     let lines = content.split('\n');
     let result = lines.map(line=>line.split('\t'));
@@ -10,14 +23,14 @@ exports.parseFile = function(filePath){
 }
 
 class CSV {
-    constructor(headerLine,datasWithoutIndex){
-        this.headerLine = headerLine;
+    values: Array<Array<any>>
+    constructor(public headerLine: ReadonlyArray<string>,datasWithoutIndex: any[][]){
         this.values = datasWithoutIndex;
     }
-    getHeader(){
+    getHeader(): ReadonlyArray<string>{
         return this.headerLine;
     }
-    drop(label){
+    drop(label: string | number): CSV{
         let headerLine = [...this.headerLine];
         let values = this.values.map(v=>[...v]);
         let labelIndex = typeof label === 'string'?headerLine.indexOf(label):label;
@@ -27,19 +40,18 @@ class CSV {
 
         return new CSV(headerLine,values);
     }
-    getClasses(){
-        
+    getClasses(): Array<any>{
         return this.values.map(v=>v[v.length-1])
     }
     
 }
 
-exports.read_csv = function(filePath,{
+export function read_csv (filePath: string,{
     index_col=false,
     delimiter=',',
     header=0,
     dataType='number'
-}={}){
+}={} as ReadCsvConfig): CSV{
     let rawContent = fs.readFileSync(filePath,{encoding: 'utf-8'});
 
     let lines = rawContent.split('\n').map(v=>v.split(delimiter));
@@ -71,11 +83,11 @@ exports.read_csv = function(filePath,{
     return new CSV(headerLine,datasWithoutIndex);
 }
 
-exports.write_csv = function(filePath,data,{
+export function write_csv (filePath: string,data: any[][],{
     index=false,
     header=[],
     delimiter=','
-}={}){
+}={} as WriteCsvConfig): void{
     let dataToWrite = [...data];
     if(index !== false){
         dataToWrite.forEach((v,i)=>{

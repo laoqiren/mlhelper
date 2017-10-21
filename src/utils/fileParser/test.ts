@@ -1,7 +1,7 @@
-const parser = require('./index');
-const path = require('path');
-const charts = require('../charts/index');
-const kNN = require('../../algorithm/kNN/index');
+import * as parser from './index';
+import * as path from 'path';
+import * as charts from '../charts/index';
+import kNN from '../../algorithm/kNN/index';
 
 let dt = parser.read_csv(path.join(__dirname,'./train.csv'),{
     index_col: 0,
