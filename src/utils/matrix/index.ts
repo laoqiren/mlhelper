@@ -80,7 +80,7 @@ class Matrix {
      * @returns {Array}
      * @memberof Matrix
      */
-    sum(axis:number=1): Array<number>{
+    sum(axis?: number): Array<number>{
         let result = [];
         for(let row of this.arr){
             let rowSum = row.reduce((pre,cur)=>pre+cur);

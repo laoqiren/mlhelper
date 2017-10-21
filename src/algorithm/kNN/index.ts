@@ -9,7 +9,7 @@ import {Repeat,List} from 'immutable';
  * @param {object} Matrix: dataSet 训练数据集
  * @returns {array} [归一化后的数据,各个特征的范围，各个特征的最小值]
  */
-function autoNormal(dataSet: Matrix){
+function autoNormal(dataSet: Matrix): [Array<Array<number>>,Array<number>,Array<number>]{
     let minVals = dataSet.min(0); // 每个特征的最小值
     let maxVals = dataSet.max(0); // 每个特征的最大值
     let ranges = new Vector(maxVals).zipWith((a,b)=>a-b,new Vector(minVals)); // 每个特征的范围
@@ -35,7 +35,6 @@ class kNN {
         this.labels = new Vector(labels);
         this.ranges = ranges;
         this.minVals = minVals;
-        
     }
     /**
      * kNN算法主体

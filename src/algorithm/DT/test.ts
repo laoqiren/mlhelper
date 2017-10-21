@@ -1,7 +1,8 @@
-const DT = require('./index');
-const parser = require('../../utils/fileParser/index');
-const path = require('path');
-const util = require('util')
+import DT from './index';
+import * as parser from '../../utils/fileParser/index';
+import * as path from 'path';
+import * as util from 'util';
+
 
 let dataSet = parser.parseFile(path.join(__dirname,'./dt.txt'));
 

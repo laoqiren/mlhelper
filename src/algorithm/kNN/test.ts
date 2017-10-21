@@ -1,4 +1,4 @@
-const kNN = require('../kNN');
+import kNN from '../kNN';
 
 let knn = new kNN([
     [1.,1.1],

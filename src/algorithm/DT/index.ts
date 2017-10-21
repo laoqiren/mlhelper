@@ -3,7 +3,7 @@ import * as fs from 'fs';
 import {Repeat,List} from 'immutable';
 
 // 计算香农熵
-function calShannoEnt(dataSet){
+function calShannoEnt(dataSet: Array<Array<any>>): number{
     let numEntries = dataSet.length;
     let labelCounts = {};
 
@@ -32,7 +32,7 @@ function calShannoEnt(dataSet){
  * @param {any} value 特征值 
  * @returns {array} 划分后的数据集
  */
-function splitDataSet(dataSet,axis,value){
+function splitDataSet(dataSet: Array<Array<any>>,axis: number,value: any): Array<Array<any>>{
     let retDataSet = dataSet.reduce((pre,cur)=>{
         let curList = List(cur);
         if(cur[axis] === value){
@@ -44,7 +44,7 @@ function splitDataSet(dataSet,axis,value){
 }
 
 // 选择最好的划分特征
-function chooseBestLabelToSplit(dataSet){
+function chooseBestLabelToSplit(dataSet: Array<Array<any>>): number{
     let numLables = dataSet[0].length - 1,
         baseEntropy = calShannoEnt(dataSet),
         bestInfoGain = 0.0,
@@ -71,7 +71,7 @@ function chooseBestLabelToSplit(dataSet){
 }
 
 // 多数决策，当子数据集只有一个特征，且各个实例所属分类仍旧不同时调用此方法
-function majorityCnt(classList){
+function majorityCnt(classList: Array<string>): string{
     let classCount = {};
     classList.forEach((v,i)=>{
         if(v in classCount){
@@ -85,7 +85,7 @@ function majorityCnt(classList){
 }
 
 // 构建决策树
-function createTree(dataSet,labels){
+function createTree(dataSet: Array<Array<any>>,labels: Array<string>): object{
     let classList = dataSet.map(v=>v[v.length-1]),
         uniqueClasses = [...new Set(classList)].length;
     if(uniqueClasses === 1){
@@ -119,7 +119,7 @@ function createTree(dataSet,labels){
  * @param {array} testVec 测试向量
  * @returns 测试数据的分类
  */
-function classify(inputTree,featLabels,testVec){
+function classify(inputTree: object,featLabels: Array<string>,testVec: Array<any>): any{
     let firstStr = Object.keys(inputTree)[0],
         secondDict = inputTree[firstStr],
         featIndex = featLabels.indexOf(firstStr);
@@ -140,20 +140,19 @@ function classify(inputTree,featLabels,testVec){
 }
 
 class DT {
-    constructor(dataSet,labels,alg="ID3"){
-        this.dataSet = dataSet;
-        this.labels = labels;
+    tree: object;
+    constructor(public dataSet: Array<Array<any>>,public labels: Array<string>,alg: string="ID3"){
         this.tree = createTree(dataSet,[...labels]);
     }
-    getTree(){
+    getTree(): object{
         return this.tree;
     }
     // 根据实例构造的决策树进行测试
-    classify(featLabels,testVec){
+    classify(featLabels: Array<string>,testVec: Array<any>): any{
         return classify(this.tree,featLabels,testVec);
     }
     // 将决策树存入文件
-    storeTree(filePath){
+    storeTree(filePath: string){
         let jsonTree = JSON.stringify(this.tree);
         return new Promise((resolve,reject)=>{
             fs.writeFile(filePath,jsonTree,err=>{
@@ -165,7 +164,7 @@ class DT {
         })
     }
     // 根据提供的决策树进行测试，静态方法，无需实例化构造决策树
-    static classifyFromTree(inputTree,featLabels,testVec){
+    static classifyFromTree(inputTree: object,featLabels: Array<string>,testVec: Array<any>): any{
         return classify(inputTree,featLabels,testVec);
     }
 }
