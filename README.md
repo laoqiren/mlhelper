@@ -105,7 +105,7 @@ charts.drawkNN(kNN.autoNormal(dataSet),labels,normalInx,{
 ```
 This will open your browser and draw dispersive points for kNN:
 
-![http://7xsi10.com1.z0.glb.clouddn.com/kNNplot.png](http://7xsi10.com1.z0.glb.clouddn.com/kNNplot.png)
+![http://7xsi10.com1.z0.glb.clouddn.com/knngraph.png](http://7xsi10.com1.z0.glb.clouddn.com/knngraph.png)
 
 
 ## Docs
