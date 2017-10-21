@@ -17,7 +17,7 @@ interface KnnConfig {
     size: number;
 }
 
-export function drawkNN(dataSet_: Array<Array<any>>,labels_: Array<number>,inx: Array<number>,{
+export function drawkNN(dataSet_: Array<Array<number>>,labels_: Array<any>,inx: Array<number>,{
     width="600px",
     height="400px",
     size=20

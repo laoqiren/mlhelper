@@ -5,7 +5,6 @@
     "compilerOptions": {
         "module": "commonjs",
         "removeComments": true,
-        "noImplicitAny": true,
         "allowJs": true,
         "target": "es2015",
         "sourceMap": true,
