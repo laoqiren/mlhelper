@@ -17,6 +17,43 @@ interface KnnConfig {
     size: number;
 }
 
+function treeLeaf(obj,leafRule){
+    let objKey = Object.keys(obj)[0];
+    let leaf = obj[objKey];
+    let children = [];
+    let rules = Object.keys(leaf);
+    for(let rule of rules){
+        if(typeof leaf[rule] === 'object'){
+            children.push(treeLeaf(leaf[rule],rule));
+            continue;
+        }
+        children.push({
+            name: leaf[rule],
+            rule
+        });
+    }
+
+    return {
+        name: objKey,
+        rule: leafRule,
+        children: [...children]
+    }
+}
+
+export function drawDT(tree: object,{
+    width=600,
+    height=400
+}){
+    let firstStr = Object.keys(tree)[0];
+    let obj = treeLeaf(tree,null);
+    let html = renderFile(path.resolve(__dirname,'DT','tpl.html'),{
+        width,
+        height,
+        data: JSON.stringify(obj)
+    })
+    server(html);
+}
+
 export function drawkNN(dataSet_: Array<Array<number>>,labels_: Array<any>,inx: Array<number>,{
     width="600px",
     height="400px",
