@@ -90,6 +90,8 @@ let dataSet =dt.drop('quality').values;
 ```
 
 **graph tools:**
+
+kNN:
 ```js
 const charts = require('mlhelper').utils.charts;
 let knn = new kNN(dataSet,labels);
@@ -107,7 +109,14 @@ This will open your browser and draw dispersive points for kNN:
 
 ![http://7xsi10.com1.z0.glb.clouddn.com/knngraph.png](http://7xsi10.com1.z0.glb.clouddn.com/knngraph.png)
 
-
+Decision Tree:
+```js
+charts.drawDT(dt.getTree(),{
+    width:600,
+    height:400
+});
+```
+![http://7xsi10.com1.z0.glb.clouddn.com/DT.png](http://7xsi10.com1.z0.glb.clouddn.com/DT.png)
 ## Docs
 A variety of algorithms and tools are still constantly improved, complete API documents, please look forward to
 ## LICENSE
