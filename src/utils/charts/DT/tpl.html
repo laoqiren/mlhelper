@@ -19,8 +19,8 @@
 </head>
 <body>
     <script>
-        var width = 600,
-        height = 400;
+        var width = {{width}},
+        height = {{height}};
 
         var tree = d3.layout.tree()
             .size([height, width - 160]);
@@ -34,7 +34,7 @@
             .attr("width", width)
             .attr("height", height)
             .append("g")
-            .attr("transform", "translate(40,0)");
+            .attr("transform", "translate(100,0)");
 
         var root = getData(),
             nodes = tree.nodes(root),
