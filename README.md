@@ -107,7 +107,7 @@ charts.drawkNN(kNN.autoNormal(dataSet),labels,normalInx,{
 ```
 This will open your browser and draw dispersive points for kNN:
 
-![http://7xsi10.com1.z0.glb.clouddn.com/knngraph.png](http://7xsi10.com1.z0.glb.clouddn.com/knngraph.png)
+![http://7xsi10.com1.z0.glb.clouddn.com/knnmac.png](http://7xsi10.com1.z0.glb.clouddn.com/knnmac.png)
 
 Decision Tree:
 ```js
@@ -116,7 +116,7 @@ charts.drawDT(dt.getTree(),{
     height:400
 });
 ```
-![http://7xsi10.com1.z0.glb.clouddn.com/DT.png](http://7xsi10.com1.z0.glb.clouddn.com/DT.png)
+![http://7xsi10.com1.z0.glb.clouddn.com/dtmac.png](http://7xsi10.com1.z0.glb.clouddn.com/dtmac.png)
 ## Docs
 A variety of algorithms and tools are still constantly improved, complete API documents, please look forward to
 ## LICENSE
