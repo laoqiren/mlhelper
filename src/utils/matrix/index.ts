@@ -112,6 +112,16 @@ class Matrix {
         }
         return result;
     }
+    transpose(): Array<Array<number>>{
+        return math.transpose(this.arr);
+    }
+    calAvg(flag=0 as number): Array<number>{
+        let arr = flag === 0 ? this.transpose():this.arr;
+        return arr.map((v,i)=>{
+            let sum = v.reduce((pre,cur)=>pre+cur,0);
+            return sum/v.length;
+        });
+    }
     // 初始化零矩阵
     static zeros(r: number,c: number=2): Matrix{
         return new Matrix(math.zeros(r,c)._data);

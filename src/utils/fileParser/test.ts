@@ -3,7 +3,7 @@ import * as path from 'path';
 import * as charts from '../charts/index';
 import kNN from '../../algorithm/kNN/index';
 
-let dt = parser.read_csv(path.join(__dirname,'./train.csv'),{
+let dt = parser.read_csv(path.join(__dirname,'../../../assets/train.csv'),{
     index_col: 0,
     delimiter: ',',
     header: 0,
@@ -15,7 +15,7 @@ let labels = dt.getClasses();
 let dataSet =dt.drop('quality').values;
 let knn = new kNN(dataSet,labels);
 
-let dataToTest = parser.read_csv(path.join(__dirname,'./test.csv'),{
+let dataToTest = parser.read_csv(path.join(__dirname,'../../../assets/test.csv'),{
     index_col: 0,
     dataType: 'number'
 }).drop('quality').values;
