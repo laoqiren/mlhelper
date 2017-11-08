@@ -89,6 +89,21 @@ let labels = dt.getClasses();
 let dataSet =dt.drop('quality').values;
 ```
 
+**Feature Engineering**
+```js
+// preprocessing features
+const preprocessing = require('mlhelper').utils.features.preprocessing;
+
+// make the features obey the standard normal distribution(Standardization)
+let testStandardScaler = preprocessing.standardScaler(dataSet);
+
+let testNormalize = preprocessing.normalize(dataSet);
+
+let testBinarizer = preprocessing.binarizer(dataSet);
+
+// ...
+```
+
 **graph tools:**
 
 kNN:
