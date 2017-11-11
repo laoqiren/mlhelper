@@ -141,7 +141,6 @@ charts.drawDT(dt.getTree(),{
 });
 ```
 <img src="http://7xsi10.com1.z0.glb.clouddn.com/dtmac.png" width="550px"/>
-![http://7xsi10.com1.z0.glb.clouddn.com/DT.png](http://7xsi10.com1.z0.glb.clouddn.com/DT.png)
 
 **logistic regression**
 ```js
