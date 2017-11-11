@@ -47,6 +47,15 @@ console.log(dt.getTree()); // { tearRate: { reduced: 'no lenses', normal: { asti
 console.log(result); // no lenses
 ```
 
+**logistic regression**
+```js
+const logistic = require('mlhelper').algorithm.logistic;
+// to get dataSet and labels
+let l = new logistic(dataSet,labels,150);
+// get test inx data
+l.classify(inx);
+```
+
 ### Utils
 
 **Matrix:**
