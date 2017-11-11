@@ -141,6 +141,13 @@ charts.drawDT(dt.getTree(),{
 });
 ```
 ![http://7xsi10.com1.z0.glb.clouddn.com/DT.png](http://7xsi10.com1.z0.glb.clouddn.com/DT.png)
+
+**logistic regression**
+```js
+charts.drawLogistic(dataSet,labels,weights);
+```
+<img src="http://7xsi10.com1.z0.glb.clouddn.com/logistic.png" width="400px"/>
+
 ## Docs
 A variety of algorithms and tools are still constantly improved, complete API documents, please look forward to
 ## LICENSE
