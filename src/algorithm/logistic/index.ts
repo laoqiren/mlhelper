@@ -9,7 +9,10 @@ class Logistic {
     private labels: Array<number>;
     private numIter: number;
 
-    constructor(dataMatIn: Array<Array<number>>,classLabels: Array<number>,numIter: number){
+    constructor(dataMatIn_: Array<Array<number>>,classLabels: Array<number>,numIter: number){
+        let dataMatIn = [...dataMatIn_];
+        dataMatIn = dataMatIn.map(v=>[1.0,v[0],v[1]]);
+
         this.dataMatrix = new Matrix(dataMatIn);
         this.labels = classLabels;
         this.numIter = numIter;
@@ -44,7 +47,10 @@ class Logistic {
         return weights;
     }
 
-    classify(inX: Array<number>): number{
+    classify(inX_: Array<number>): number{
+        let inX = [...inX_];
+        inX = [1.0,inX[0],inX[1]];
+
         let weights = this.getWeights();
         let vec = _.zipWith(inX,weights,(a,b)=>a*b);
         let prob = sigmoid(_.sum(vec));

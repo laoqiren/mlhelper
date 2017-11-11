@@ -80,3 +80,42 @@ export function drawkNN(dataSet_: Array<Array<number>>,labels_: Array<any>,inx: 
     });
     server(html)
 }
+
+
+export function drawLogistic(dataSet_: Array<Array<number>>,labels_: Array<any>,weights: Array<number>,{
+    width="600px",
+    height="400px",
+    size=20
+}={} as KnnConfig){
+    let dataSet = [...dataSet_];
+    let labels = [...labels_];
+    let data = [];
+    let classes = [...new Set(labels)].filter(v=>v!==undefined);
+    classes.forEach(c=>{
+        let classSet = dataSet.filter((value,i)=>labels[i] === c);
+        data.push([...classSet])
+    });
+
+    let xs = dataSet.map(v=>v[0]),
+        minx = Math.min(...xs),
+        maxx = Math.max(...xs);
+
+    let k = -weights[1]/weights[2];
+    let b = -weights[0]/weights[2];
+
+    let linePoints = [
+        [minx,k*minx+b],
+        [maxx,k*maxx+b]
+    ]
+
+    let html = renderFile(path.resolve(__dirname,'logistic','tpl.html'),{
+        title: "Logistic Regression",
+        width,
+        height,
+        size,
+        data: JSON.stringify(data),
+        classes: JSON.stringify(classes.map(v=>v.toString())),
+        linePoints: JSON.stringify(linePoints)
+    });
+    server(html)
+}

@@ -3,6 +3,7 @@ import * as Parser from '../../utils/fileParser/index';
 import * as preprocessing from '../../utils/features/preprocessing';
 import * as path from 'path';
 import { log, print } from 'util';
+import * as charts from '../../utils/charts/index';
 
 let datas = Parser.read_csv(path.join(__dirname,'../../../assets/testSet.txt'),{
     index_col:false,
@@ -30,4 +31,9 @@ for(let i=0; i<dataSet.length; i++){
 }
 
 console.log('error rate:',errors/dataSet.length)
+
+let weights = logi.getWeights()
+console.log(weights);
+
+charts.drawLogistic(dataSet,labels,weights)
 

@@ -16,16 +16,43 @@
         }
     const data = {{ data }};
     const labels = {{classes}};
+    const linePoints = {{linePoints}};
     let colors = [];
     for(var i=0; i<labels.length; i++){
         colors.push(getRandomColor())
     }
 
+    var markLineOpt = {
+        animation: false,
+        label: {
+            normal: {
+                formatter: '',
+                textStyle: {
+                    align: 'right'
+                }
+            }
+        },
+        lineStyle: {
+            normal: {
+                type: 'solid'
+            }
+        },
+        tooltip: {
+            formatter: ''
+        },
+        data: [[{
+            coord: linePoints[0],
+            symbol: 'none'
+        }, {
+            coord: linePoints[1],
+            symbol: 'none'
+        }]]
+    };
     let series = data.map((v,i)=>{
         return {
             name: labels[i],
             data: data[i],
-            type: i===data.length-1 ? 'line':'scatter',
+            type: 'scatter',
             symbolSize: function (data) {
                 return {{size}}
             },
@@ -51,7 +78,8 @@
                         color: colors[i]
                     }])
                 }
-            }
+            },
+            markLine: markLineOpt
         }
     })
 
