@@ -4,8 +4,9 @@ import * as _ from 'lodash';
 interface ReadCsvConfig {
     index_col?: boolean | number;
     delimiter?: string;
-    header?: Array<string> | number;
+    header?: Array<string> | number | boolean;
     dataType?: string;
+    classType?: string;
 }
 
 interface WriteCsvConfig {
@@ -35,7 +36,9 @@ class CSV {
         let values = this.values.map(v=>[...v]);
         let labelIndex = typeof label === 'string'?headerLine.indexOf(label):label;
 
-        headerLine.splice(labelIndex,1);
+        if(headerLine.length !== 0){
+            headerLine.splice(labelIndex,1);
+        }
         values.forEach(v=>v.splice(labelIndex,1));
 
         return new CSV(headerLine,values);
@@ -50,7 +53,8 @@ export function read_csv (filePath: string,{
     index_col=false,
     delimiter=',',
     header=0,
-    dataType='number'
+    dataType='number',
+    classType='number'
 }={} as ReadCsvConfig): CSV{
     let rawContent = fs.readFileSync(filePath,{encoding: 'utf-8'});
 
@@ -78,7 +82,12 @@ export function read_csv (filePath: string,{
     }
 
     if(dataType === 'number'){
-        datasWithoutIndex = datasWithoutIndex.map(row=>row.map(col=>Number(col)))
+        datasWithoutIndex = datasWithoutIndex.map(row=>row.map(col=>{
+            if(classType === 'number'){
+                return Number(col);
+            }
+            return col;
+        }))
     }
     return new CSV(headerLine,datasWithoutIndex);
 }

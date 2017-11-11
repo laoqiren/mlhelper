@@ -1,4 +1,5 @@
 node_modules/
+assets/
 tslint.json
 gulpfile.js
 tsconfig.json

@@ -126,6 +126,12 @@ class Matrix {
     static zeros(r: number,c: number=2): Matrix{
         return new Matrix(math.zeros(r,c)._data);
     }
+    static ones(m: number,n?: number){
+        if(n){
+            return math.ones(m,n)._data;
+        }
+        return math.ones(m)._data;
+    }
 }
 
 export default Matrix;
