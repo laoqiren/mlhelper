@@ -1,5 +1,6 @@
 import {List,Repeat} from 'immutable';
 import * as math from 'mathjs';
+import * as _ from 'lodash';
 
 class Matrix {
     constructor(public arr: Array<Array<number>>){}
@@ -128,6 +129,14 @@ class Matrix {
     }
     static ones(m: number,n?: number){
         return n?math.ones(m,n)._data:math.ones(m)._data;
+    }
+    static mean(arr: Array<Array<number>>, axis=0 as number): Array<number>{
+        
+        if(axis === 0){ //按列求平均值
+            return math.transpose(arr).map(v=>_.sum(v)/v.length);
+        } else {
+            return arr.map(v=>_.sum(v)/v.length);
+        }
     }
 }
 

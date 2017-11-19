@@ -1,4 +1,5 @@
 import {List,Repeat} from 'immutable';
+import * as _ from 'lodash';
 
 class Vector {
     constructor(public arr: Array<number>){
@@ -23,6 +24,11 @@ class Vector {
         } else {
             return arr===0.0?0.0:(arr>0.0?1.0:-1.0);
         }
+    }
+    static rand(m: number){
+        let initArr = Repeat(0,m).toArray();
+        let result = initArr.map(v=>Math.random());
+        return result;
     }
 }
 
