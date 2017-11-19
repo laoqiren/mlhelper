@@ -17,6 +17,13 @@ class Vector {
       //  console.log(result)
         return result;
     }
+    static sign(arr: number|Array<number>): number|Array<number>{
+        if(Array.isArray(arr)){
+            return arr.map(v=>v===0.0?0.0:(v>0.0?1.0:-1.0))
+        } else {
+            return arr===0.0?0.0:(arr>0.0?1.0:-1.0);
+        }
+    }
 }
 
 export default Vector;

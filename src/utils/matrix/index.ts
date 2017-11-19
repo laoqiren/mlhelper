@@ -123,14 +123,11 @@ class Matrix {
         });
     }
     // 初始化零矩阵
-    static zeros(r: number,c: number=2): Matrix{
-        return new Matrix(math.zeros(r,c)._data);
+    static zeros(r: number,c?: number): Matrix{
+        return c?new Matrix(math.zeros(r,c)._data):new Matrix(math.zeros(r)._data);
     }
     static ones(m: number,n?: number){
-        if(n){
-            return math.ones(m,n)._data;
-        }
-        return math.ones(m)._data;
+        return n?math.ones(m,n)._data:math.ones(m)._data;
     }
 }
 
