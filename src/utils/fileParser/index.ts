@@ -15,11 +15,14 @@ interface WriteCsvConfig {
     delimiter?: string;
 }
 
-export function parseFile(filePath:string){
+export function parseFile(filePath:string,toNumber=false as boolean){
     let content = fs.readFileSync(filePath,{encoding: 'utf-8'});
     let lines = content.split('\n');
     let result = lines.map(line=>line.split('\t'));
 
+    if(toNumber){
+       return result.map(v=>v.map(c=>Number(c)))
+    }
     return result;
 }
 
