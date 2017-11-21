@@ -170,7 +170,28 @@ charts.drawLogistic(dataSet,labels,weights);
 <img src="http://7xsi10.com1.z0.glb.clouddn.com/logistic.png" width="550px"/>
 
 ## Docs
-A variety of algorithms and tools are still constantly improved, complete API documents, please look forward to
+[Documetation](docs/)  Still working...
+
+## Contribute
+### git clone 
+```
+git clone https://github.com/laoqiren/mlhelper.git
+```
+### install dependencies&&devdependecies
+```
+npm install
+```
+
+### development
+```
+npm run dev
+```
+### build
+```
+npm run build
+```
+
+**Any ideas and issues is welcome! I need your help.**
 ## LICENSE
 MIT.
 
