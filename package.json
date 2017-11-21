@@ -4,7 +4,9 @@
   "description": "tools for ML in JavaScript",
   "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "gulp watch-ts",
+    "build": "gulp copyFiles && gulp build-ts"
   },
   "keywords": [
     "ML",

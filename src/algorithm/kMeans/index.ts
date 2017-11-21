@@ -32,17 +32,22 @@ class kMeans {
     }
     // 计算两点欧式距离
     distEclud(vec1: Array<number>,vec2: Array<number>): number{
-        return _.sum(_.zipWith(vec1,vec2,(a,b)=>(a-b)**2));
+        return Math.sqrt(_.sum(_.zipWith(vec1,vec2,(a,b)=>(a-b)**2)));
     }
     // 聚类函数
-    cluster(): [Array<Array<number>>,Array<Array<number>>]{
+    cluster(max=50 as number): [Array<Array<number>>,Array<Array<number>>]{
         let m = this.dataSet.size()[0],
             dataSet = this.dataSet.arr;
         let clusterAssment = Matrix.zeros(m,2).arr, //各个实例的聚类结果，结果包含所属质心，和该实例到所属质心的距离
             centroids = this.createCent(), //存放各个质心向量
             clusterChanged = true, // 标识聚类情况发生变化，只要有一个实例的聚类发生变化，设为true
             k = this.k;  // 质心个数
+        let num = 0; // 收敛次数
         while(clusterChanged){
+            if(++num>max){ //超过最大收敛次数，退出循环
+                break;
+            }
+
             clusterChanged = false;
             for(let i=0; i<m; i++){
                 let minDist = Infinity, //初始化某个实例到各个质心的最小距离为无穷大
@@ -56,8 +61,8 @@ class kMeans {
                 }
                 if(clusterAssment[i][0]!==minIndex){ //聚类发生变化
                     clusterChanged = true;
-                    clusterAssment[i] = [minIndex,minDist**2]; //更改当前实例的聚类信息
                 }
+                clusterAssment[i] = [minIndex,minDist**2]; //更改当前实例的聚类信息
             }
            
             for(let cent=0; cent<k; cent++){

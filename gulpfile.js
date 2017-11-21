@@ -28,7 +28,7 @@ gulp.task('build-ts',()=>{
         .pipe(babel({
             presets: ['env']
         }))
-        .pipe(sourcemaps.write())
+        .pipe(sourcemaps.write('./maps'))
         .pipe(gulp.dest(PATHS.output));
 });
 

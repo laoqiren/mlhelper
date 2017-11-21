@@ -3,5 +3,5 @@ assets/
 tslint.json
 gulpfile.js
 tsconfig.json
-dist/**/*.js.map
+dist/maps/
 src/
