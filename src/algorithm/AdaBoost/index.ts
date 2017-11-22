@@ -7,12 +7,28 @@ class AdaBoost {
     private labels: Array<number>;
     private numInt: number;
 
+    /**
+     * Creates an instance of AdaBoost.
+     * @param {Array<Array<number>>} dataSet matirx like datas for training.
+     * @param {Array<number>} labels vector of the training datas' classes.
+     * @param {number} [numInt=40 as number] maximum permission iterative number of times, default is 40
+     * @memberof AdaBoost
+     */
     constructor(dataSet: Array<Array<number>>,labels: Array<number>,numInt=40 as number){
         this.dataSet = dataSet;
         this.labels = labels;
         this.numInt = numInt;
     }
-    // 基于单层决策树的弱分类器
+    /**
+     * 基于单层决策树的弱分类器 weak classifier based on Single layer decision tree
+     * 
+     * @param {Matrix} dataMatrix matrix of datas for classify
+     * @param {number} dimen the index of features to classify
+     * @param {number} threshVal the threshold value of the featuer to classify
+     * @param {String} flag can be 'lt' or 'gt', when it's 'lt', when the value of the feature is lower than threshVal, the data's class will be -1, or will be 1.0.
+     * @returns {Array<number>} classification results.
+     * @memberof AdaBoost
+     */
     stumpClassify(dataMatrix: Matrix,dimen: number,threshVal: number,flag: String): Array<number>{
         let m = dataMatrix.size()[0];
         let retArray = Matrix.ones(m);
@@ -24,6 +40,13 @@ class AdaBoost {
         }
         return retArray;
     }
+    /**
+     * 针对某个特征权值向量找到其对应的最佳单层决策树若分类器，及该弱分类器分类结果和错误率
+     * 
+     * @param {Array<number>} D the vector of every feature's weight.
+     * @returns {[Object,number,Array<number>]} the information of the best weak classifier, the error rate of the classifier and the classification results.
+     * @memberof AdaBoost
+     */
     buildStump(D: Array<number>): [Object,number,Array<number>]{
         let dataSetMat = new Matrix(this.dataSet);
         let labels = this.labels;
@@ -65,6 +88,12 @@ class AdaBoost {
         return [bestStump,minError,bestClassEst];
 
     }
+    /**
+     * 根据最大迭代次数，得到所有弱分类器
+     * 
+     * @returns {Array<Object>} array of all the weak classifier.
+     * @memberof AdaBoost
+     */
     adaBoostTrainDS(): Array<Object>{
         let numInt = this.numInt, // 最大迭代次数
             dataMatrix = new Matrix(this.dataSet),
@@ -101,6 +130,13 @@ class AdaBoost {
         }
         return weakClassArr;
     }
+    /**
+     * 输入测试数据矩阵，根据所有弱分类器组合学习，得到最终结果
+     * 
+     * @param {Array<Array<number>>} inx matrix of datas for testing.
+     * @returns {Array<number>} vector of classification results.
+     * @memberof AdaBoost
+     */
     classify(inx: Array<Array<number>>): Array<number>{
         let dataMatrix = new Matrix(inx);
         let m = dataMatrix.size()[0];
