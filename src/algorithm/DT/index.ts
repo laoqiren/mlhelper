@@ -6,7 +6,12 @@ interface ClassCount {
     [index: string]: number;
 }
 
-// 计算香农熵
+/**
+ * 计算香农熵 Calculating Shannon entropy
+ * 
+ * @param {Array<Array<any>>} dataSet 
+ * @returns {number} 
+ */
 function calShannoEnt(dataSet: Array<Array<any>>): number{
     let numEntries = dataSet.length;
     let labelCounts:ClassCount = {};
@@ -29,12 +34,12 @@ function calShannoEnt(dataSet: Array<Array<any>>): number{
 }
 
 /**
- * 划分数据集
+ * 划分数据集 Partition dataset
  * 
- * @param {array} dataSet 原始数据集 
- * @param {number} axis 划分特征
- * @param {any} value 特征值 
- * @returns {array} 划分后的数据集
+ * @param {array} dataSet 原始数据集 Raw data set
+ * @param {number} axis 划分特征 which feature to partition
+ * @param {any} value 特征值 the value of the feature to partition
+ * @returns {array} 划分后的数据集 the partition result.
  */
 function splitDataSet(dataSet: Array<Array<any>>,axis: number,value: any): Array<Array<any>>{
     let retDataSet = dataSet.reduce((pre,cur)=>{
@@ -47,7 +52,12 @@ function splitDataSet(dataSet: Array<Array<any>>,axis: number,value: any): Array
     return retDataSet;    
 }
 
-// 选择最好的划分特征
+/**
+ * 选择最好的划分特征 choose the best feature to partition.
+ * 
+ * @param {Array<Array<any>>} dataSet 
+ * @returns {number} 
+ */
 function chooseBestLabelToSplit(dataSet: Array<Array<any>>): number{
     let numLables = dataSet[0].length - 1,
         baseEntropy = calShannoEnt(dataSet),
@@ -74,7 +84,12 @@ function chooseBestLabelToSplit(dataSet: Array<Array<any>>): number{
     return bestLabel;
 }
 
-// 多数决策，当子数据集只有一个特征，且各个实例所属分类仍旧不同时调用此方法
+/**
+ * 多数决策，当子数据集只有一个特征，且各个实例所属分类仍旧不同时调用此方法 The majority decision, only one set of features when the data, and each instance belongs to classification is still not at the same time this method is called
+ * 
+ * @param {Array<string>} classList 
+ * @returns {string} 
+ */
 function majorityCnt(classList: Array<string>): string{
     let classCount:ClassCount = {};
     classList.forEach((v,i)=>{
@@ -88,7 +103,13 @@ function majorityCnt(classList: Array<string>): string{
     return sortedClassCount[0];
 }
 
-// 构建决策树
+/**
+ * 构建决策树 create decision tree.
+ * 
+ * @param {Array<Array<any>>} dataSet for training.
+ * @param {Array<string>} labels the classes of training data.
+ * @returns {object} 
+ */
 function createTree(dataSet: Array<Array<any>>,labels: Array<string>): object{
     let classList = dataSet.map(v=>v[v.length-1]),
         uniqueClasses = [...new Set(classList)].length;
@@ -116,11 +137,11 @@ function createTree(dataSet: Array<Array<any>>,labels: Array<string>): object{
 }
 
 /**
- * 判断测试数据分类
+ * 判断测试数据分类 class the testing data.
  * 
- * @param {object} inputTree 决策树对象
- * @param {array} featLabels 特征名称向量
- * @param {array} testVec 测试向量
+ * @param {object} inputTree 决策树对象  the decision tree.
+ * @param {array} featLabels 特征名称向量  the vector of feature names.
+ * @param {array} testVec 测试向量  the vector for testing.
  * @returns 测试数据的分类
  */
 function classify(inputTree: object,featLabels: Array<string>,testVec: Array<any>): any{

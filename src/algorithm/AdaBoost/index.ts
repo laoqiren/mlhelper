@@ -41,7 +41,7 @@ class AdaBoost {
         return retArray;
     }
     /**
-     * 针对某个特征权值向量找到其对应的最佳单层决策树若分类器，及该弱分类器分类结果和错误率
+     * 针对某个特征权值向量找到其对应的最佳单层决策树若分类器，及该弱分类器分类结果和错误率 According to a feature weight vector, the optimal single layer decision tree is found, the classifier, the classification result and the error rate of the weak classifier
      * 
      * @param {Array<number>} D the vector of every feature's weight.
      * @returns {[Object,number,Array<number>]} the information of the best weak classifier, the error rate of the classifier and the classification results.
@@ -89,7 +89,7 @@ class AdaBoost {
 
     }
     /**
-     * 根据最大迭代次数，得到所有弱分类器
+     * 根据最大迭代次数，得到所有弱分类器  get all the weak classifier by iteration specified times
      * 
      * @returns {Array<Object>} array of all the weak classifier.
      * @memberof AdaBoost
@@ -131,7 +131,7 @@ class AdaBoost {
         return weakClassArr;
     }
     /**
-     * 输入测试数据矩阵，根据所有弱分类器组合学习，得到最终结果
+     * 输入测试数据矩阵，根据所有弱分类器组合学习，得到最终结果 compose all weak classifier to get a strong classifier.
      * 
      * @param {Array<Array<number>>} inx matrix of datas for testing.
      * @returns {Array<number>} vector of classification results.

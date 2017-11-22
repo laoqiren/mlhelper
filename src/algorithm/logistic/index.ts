@@ -9,6 +9,13 @@ class Logistic {
     private labels: Array<number>;
     private numIter: number;
 
+    /**
+     * Creates an instance of Logistic.
+     * @param {Array<Array<number>>} dataMatIn_ matrix like dataset for training.
+     * @param {Array<number>} classLabels the classes of training datas.
+     * @param {number} numIter Maximum iterations
+     * @memberof Logistic
+     */
     constructor(dataMatIn_: Array<Array<number>>,classLabels: Array<number>,numIter: number){
         let dataMatIn = [...dataMatIn_];
         dataMatIn = dataMatIn.map(v=>[1.0,v[0],v[1]]);
@@ -17,7 +24,12 @@ class Logistic {
         this.labels = classLabels;
         this.numIter = numIter;
     }
-    // 随机梯度上升法求各个特征的最佳回归系数
+    /**
+     * 随机梯度上升法求各个特征的最佳回归系数  Random gradient ascent method for optimal regression coefficients of each feature
+     * 
+     * @returns {Array<number>} 
+     * @memberof Logistic
+     */
     getWeights(): Array<number>{
         let dataMatrix = this.dataMatrix.arr;
         let labels = this.labels;
@@ -47,6 +59,13 @@ class Logistic {
         return weights;
     }
 
+    /**
+     * 分类测试数据 class the given test data.
+     * 
+     * @param {Array<number>} inX_  test data
+     * @returns {number} 
+     * @memberof Logistic
+     */
     classify(inX_: Array<number>): number{
         let inX = [...inX_];
         inX = [1.0,inX[0],inX[1]];

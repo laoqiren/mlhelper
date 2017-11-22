@@ -7,11 +7,22 @@ class kMeans {
     private dataSet: Matrix;
     private k: number;
 
+    /**
+     * Creates an instance of kMeans.
+     * @param {Array<Array<number>>} dataSet 
+     * @param {number} k how many centroids.
+     * @memberof kMeans
+     */
     constructor(dataSet: Array<Array<number>>,k: number){
         this.dataSet = new Matrix(dataSet);
         this.k = k;
     }
-    // 随机创建K个初始质心
+    /**
+     * 随机创建K个初始质心 Random creation of K initial centroids
+     * 
+     * @returns {Array<Array<number>>} 
+     * @memberof kMeans
+     */
     createCent(): Array<Array<number>>{
         let n = this.dataSet.size()[1];
         let centroids = Matrix.zeros(this.k,n).arr;
@@ -30,11 +41,24 @@ class kMeans {
 
         return centroids;
     }
-    // 计算两点欧式距离
+    /**
+     * 计算两点欧式距离 Calculating the Euclidean distance between two points
+     * 
+     * @param {Array<number>} vec1 vector 1.
+     * @param {Array<number>} vec2 vector 2.
+     * @returns {number} 
+     * @memberof kMeans
+     */
     distEclud(vec1: Array<number>,vec2: Array<number>): number{
         return Math.sqrt(_.sum(_.zipWith(vec1,vec2,(a,b)=>(a-b)**2)));
     }
-    // 聚类函数
+    /**
+     * 聚类函数cluster function
+     * 
+     * @param {number} [max=50 as number]  Maximum iterations
+     * @returns {[Array<Array<number>>,Array<Array<number>>]} 
+     * @memberof kMeans
+     */
     cluster(max=50 as number): [Array<Array<number>>,Array<Array<number>>]{
         let m = this.dataSet.size()[0],
             dataSet = this.dataSet.arr;

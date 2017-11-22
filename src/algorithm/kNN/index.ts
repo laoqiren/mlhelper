@@ -9,8 +9,8 @@ interface ClassCount {
 /**
  *  归一化数据
  * 
- * @param {object} Matrix: dataSet 训练数据集
- * @returns {array} [归一化后的数据,各个特征的范围，各个特征的最小值]
+ * @param {object} Matrix: dataSet
+ * @returns {Array} [normalized data,the range of each feature，the minimum value of each feature]
  */
 function autoNormal(dataSet: Matrix): [Array<Array<number>>,Array<number>,Array<number>]{
     let minVals = dataSet.min(0); // 每个特征的最小值
@@ -32,6 +32,12 @@ class kNN {
     private ranges: Array<number>;
     private minVals: Array<number>;
 
+    /**
+     * Creates an instance of kNN.
+     * @param {Array<Array<number>>} dataSet Matrix like datas for training.
+     * @param {Array<any>} labels vector like classes of each tarining data.
+     * @memberof kNN
+     */
     constructor(dataSet: Array<Array<number>>,labels: Array<any>){
         let [normalDataSet,ranges,minVals] = autoNormal(new Matrix(dataSet)); 
         this.dataSet = new Matrix(normalDataSet);
@@ -42,8 +48,8 @@ class kNN {
     /**
      * kNN算法主体
      * 
-     * @param {array} inx 测试数据
-     * @param {number} K值
+     * @param {array} inx data for testing.
+     * @param {number} K值 the K number.
      * @returns {any}
      * @memberof kNN
      */
@@ -78,6 +84,13 @@ class kNN {
         // 返回实例最多的分类
         return sortedClassCount[0]
     }
+    /**
+     * normalize the vector of testing data.
+     * 
+     * @param {Array<number>} inx_ 
+     * @returns {Array<number>} 
+     * @memberof kNN
+     */
     autoNormalVector(inx_: Array<number>): Array<number>{
         let inx = [...inx_];
         let minVals = this.minVals,
@@ -87,6 +100,14 @@ class kNN {
         inx = new Vector(inx).zipWith((a,b)=>a/b,new Vector(ranges));
         return inx;
     }
+    /**
+     * normalize the given matrix like datas.
+     * 
+     * @static
+     * @param {Array<Array<number>>} dataSet 
+     * @returns {Array<Array<number>>} 
+     * @memberof kNN
+     */
     static autoNormal(dataSet: Array<Array<number>>): Array<Array<number>>{
         return autoNormal(new Matrix(dataSet))[0];
     }
