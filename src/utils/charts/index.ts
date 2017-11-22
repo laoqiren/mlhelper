@@ -3,6 +3,14 @@ import * as path from 'path';
 import * as fs from 'fs';
 import * as swig from 'swig';
 
+/**
+ * 根据模板和数据渲染可视化页面
+ * 
+ * @export
+ * @param {string} template 
+ * @param {object} data 
+ * @returns 
+ */
 export function renderFile(template: string,data: object){
     return swig.render(fs.readFileSync(template).toString(),{
         filename: template,
@@ -40,6 +48,13 @@ function treeLeaf(obj,leafRule){
     }
 }
 
+/**
+ * 可视化决策树
+ * 
+ * @export
+ * @param {object} tree the decision tree get from DT algorithm.
+ * @param {any} options configuration object. width: the width of the graph. height: the height of the graph. size: the size of every point.
+ */
 export function drawDT(tree: object,{
     width=600,
     height=400
@@ -54,6 +69,15 @@ export function drawDT(tree: object,{
     server(html);
 }
 
+/**
+ * 可视化kNN算法，绘制散点图
+ * 
+ * @export
+ * @param {Array<Array<number>>} dataSet_  matrix of datas for training.
+ * @param {Array<any>} labels_ vector of training datas' classes.
+ * @param {Array<number>} inx vector of data to test.
+ * @param {any} options configuration object. width: the width of the graph. height: the height of the graph. size: the size of every point.
+ */
 export function drawkNN(dataSet_: Array<Array<number>>,labels_: Array<any>,inx: Array<number>,{
     width="600px",
     height="400px",
@@ -82,6 +106,15 @@ export function drawkNN(dataSet_: Array<Array<number>>,labels_: Array<any>,inx: 
 }
 
 
+/**
+ * 
+ * 绘制logistic回归算法的散点图和回归线
+ * @export
+ * @param {Array<Array<number>>} dataSet_ matrix of datas for training.
+ * @param {Array<any>} labels_ vector of training datas' classes.
+ * @param {Array<number>} weights vector of features' weights get from logistic algorithm.
+ * @param {any} options configuration object. width: the width of the graph. height: the height of the graph. size: the size of every point.
+ */
 export function drawLogistic(dataSet_: Array<Array<number>>,labels_: Array<any>,weights: Array<number>,{
     width="600px",
     height="400px",
