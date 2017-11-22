@@ -3,7 +3,9 @@ import * as util from 'util';
 import * as path from 'path';
 import * as fileParser from '../../utils/fileParser';
 
-let dataSet = <Array<Array<number>>> fileParser.parseFile(path.join(__dirname,'./testSet.txt'),true);
+let dataSet = <Array<Array<number>>> fileParser.parseFile(path.join(__dirname,'./testSet.txt'),{
+    toNumber: true
+});
 
 let kmeans = new kMeans(dataSet,5);
 

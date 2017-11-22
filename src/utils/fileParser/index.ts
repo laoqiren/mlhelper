@@ -15,10 +15,30 @@ interface WriteCsvConfig {
     delimiter?: string;
 }
 
-export function parseFile(filePath:string,toNumber=false as boolean){
+interface ReadFileConfig {
+    toNumber?: boolean;
+    delimiter?: string;
+}
+
+
+/**
+ * 简单读取文件，配置包括是否转化数据为数值型和分隔符号
+ * 
+ * @export
+ * @param {string} filePath 
+ * @param {object} options {
+ * toNumber: {boolean}. whether transform datas to number or not. deault to false.
+ * delmiter: {string}. delmiter for every line. default to '\t'.
+ * } 
+ * @returns {Array<Array<any>>}
+ */
+export function parseFile(filePath:string,{
+    toNumber=false,
+    delimiter='\t'
+}={} as ReadFileConfig): Array<Array<any>>{
     let content = fs.readFileSync(filePath,{encoding: 'utf-8'});
     let lines = content.split('\n');
-    let result = lines.map(line=>line.split('\t'));
+    let result = lines.map(line=>line.split(delimiter));
 
     if(toNumber){
        return result.map(v=>v.map(c=>Number(c)))
@@ -31,9 +51,22 @@ class CSV {
     constructor(public headerLine: Array<string>,datasWithoutIndex: Array<Array<any>>){
         this.values = datasWithoutIndex;
     }
+    /**
+     * 获取标题行 Get the header line.
+     * 
+     * @returns {Array<string>} 
+     * @memberof CSV
+     */
     getHeader(): Array<string>{
         return this.headerLine;
     }
+    /**
+     * 删除某一行或者指定标题的列 delete the specific column.
+     * 
+     * @param {(string | number)} label delete the specific number of column or the column of specific label.
+     * @returns {CSV} instance of class CSV.
+     * @memberof CSV
+     */
     drop(label: string | number): CSV{
         let headerLine = [...this.headerLine];
         let values = this.values.map(v=>[...v]);
@@ -46,12 +79,32 @@ class CSV {
 
         return new CSV(headerLine,values);
     }
+    /**
+     * 获取分类列，一般为最后一列。 Get the last column of every line.
+     * 
+     * @returns {Array<any>} 
+     * @memberof CSV
+     */
     getClasses(): Array<any>{
         return this.values.map(v=>v[v.length-1])
     }
     
 }
 
+/**
+ * 读取csv文件 Read CSV file.
+ * 
+ * @export
+ * @param {string} filePath 
+ * @param {object} options {
+ * index_col: {boolean|number}. when set to true, the first column of data will be regarded as the counter column. Default to be false.
+ * delmiter: {string}. delmiter for every line. Default to be ','.
+ * header: {Array<any>|number}. Can be the vector of custom header line or the index of the header line. default to 0.
+ * dataType: {string}. the type of datas, default to 'number'.
+ * classType: {string}. the type of the last column of each line. default to 'number'.
+ * }
+ * @returns {CSV} instance of class CSV.
+ */
 export function read_csv (filePath: string,{
     index_col=false,
     delimiter=',',
@@ -95,6 +148,17 @@ export function read_csv (filePath: string,{
     return new CSV(headerLine,datasWithoutIndex);
 }
 
+/**
+ * 写入CSV数据  Write datas to file.
+ * 
+ * @export
+ * @param {string} filePath 
+ * @param {any[][]} data datas to write.
+ * @param {object} options {
+ * index: {boolean}. if set to be true, it will add a index column for each line. default to false.
+ * header: {Array<any>}. custom header to add to the first line. default to [].
+ * }
+ */
 export function write_csv (filePath: string,data: any[][],{
     index=false,
     header=[],
