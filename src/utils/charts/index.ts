@@ -53,7 +53,10 @@ function treeLeaf(obj,leafRule){
  * 
  * @export
  * @param {object} tree the decision tree get from DT algorithm.
- * @param {any} options configuration object. width: the width of the graph. height: the height of the graph. size: the size of every point.
+ * @param {any} options configuration object. {
+ * width: {number} the width of the graph. 
+ * height: {number} the height of the graph. size: the size of every point.
+ * }
  */
 export function drawDT(tree: object,{
     width=600,
@@ -76,7 +79,11 @@ export function drawDT(tree: object,{
  * @param {Array<Array<number>>} dataSet_  matrix of datas for training.
  * @param {Array<any>} labels_ vector of training datas' classes.
  * @param {Array<number>} inx vector of data to test.
- * @param {any} options configuration object. width: the width of the graph. height: the height of the graph. size: the size of every point.
+ * @param {object} options configuration object. {
+ * width: {string} the width of the graph. default to "600px".
+ * height: {string} the height of the graph. default to "400px".
+ * size: {number} the size of every point. default to 20.
+ * }
  */
 export function drawkNN(dataSet_: Array<Array<number>>,labels_: Array<any>,inx: Array<number>,{
     width="600px",
@@ -113,7 +120,11 @@ export function drawkNN(dataSet_: Array<Array<number>>,labels_: Array<any>,inx: 
  * @param {Array<Array<number>>} dataSet_ matrix of datas for training.
  * @param {Array<any>} labels_ vector of training datas' classes.
  * @param {Array<number>} weights vector of features' weights get from logistic algorithm.
- * @param {any} options configuration object. width: the width of the graph. height: the height of the graph. size: the size of every point.
+ * @param {object} options configuration object. {
+ * width: {string} the width of the graph. default to "600px".
+ * height: {string} the height of the graph. default to "400px".
+ * size: {number} the size of every point. deault to 20.
+ * }
  */
 export function drawLogistic(dataSet_: Array<Array<number>>,labels_: Array<any>,weights: Array<number>,{
     width="600px",
