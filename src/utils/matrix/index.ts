@@ -103,9 +103,9 @@ class Matrix {
         return [this.arr.length,this.arr[0].length];
     }
     /**
-     * 矩阵同一行/列进行相加
+     * 矩阵同一行/列进行相加 The sum of data in the same row/column
      * 
-     * @param {number} [axis=1] 
+     * @param {number} [axis=1] when to be 1, get the sum of the same row, when to be 0, get the sum of the same column. default to 1.
      * @returns {Array}
      * @memberof Matrix
      */
@@ -117,8 +117,8 @@ class Matrix {
     }
     /**
      * 
-     * 获取同一行/列的最小值
-     * @param {number} [axis=0 as number] 
+     * 获取同一行/列的最小值 The minimum value of data in the same row/column.
+     * @param {number} [axis=0 as number] when set to be 0, get the minimum value of data in the same column. 1 to the same row. default is 0.
      * @returns {Array<number>} 
      * @memberof Matrix
      */
@@ -130,9 +130,9 @@ class Matrix {
         return arr.map(v=>_.min(v));
     }
     /**
-     * 获取同一行/列的最大值
+     * 获取同一行/列的最大值 The maximum value of data in the same row/column.
      * 
-     * @param {number} [axis=0 as number] 
+     * @param {number} [axis=0 as number] when set to be 0, get the maximum value of data in the same column. 1 to the same row. default is 0.
      * @returns {Array<number>} 
      * @memberof Matrix
      */
@@ -144,7 +144,7 @@ class Matrix {
         return arr.map(v=>_.max(v));
     }
     /**
-     * 转置矩阵
+     * 转置矩阵 Transpose matrix
      * 
      * @returns {Array<Array<number>>} 
      * @memberof Matrix
@@ -167,11 +167,11 @@ class Matrix {
         return n?math.ones(m,n)._data:math.ones(m)._data;
     }
     /**
-     * 获取同一行或同一列的平均值
+     * 获取同一行或同一列的平均值 The average value of the same row/column of data
      * 
      * @static
      * @param {Array<Array<number>>} arr 
-     * @param {number} [axis=0 as number] 
+     * @param {number} [axis=0 as number] when to be 0, the same column, 1 to the same row. default to 0.
      * @returns {Array<number>} 
      * @memberof Matrix
      */
