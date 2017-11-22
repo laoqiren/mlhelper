@@ -25,39 +25,27 @@ class Matrix {
      */
     zipWith(arrA: Array<Array<number>>,arrB: Array<Array<number>>,operator: string): Matrix{
         let result = [];
+
         switch(operator){
             case '+':
-                for(let i=0; i<arrA.length; i++){
-                    result[i] = [];
-                    for(let j=0; j<arrA[0].length; j++){
-                        result[i].push(arrA[i][j] + arrB[i][j]);
-                    }
-                }
+                result = _.zipWith(arrA,arrB,(a,b)=>{
+                    return _.zipWith(a,b,(m,n)=>m+n);
+                });
                 break;
             case '-':
-                for(let i=0; i<arrA.length; i++){
-                    result[i] = [];
-                    for(let j=0; j<arrA[0].length; j++){
-                        result[i].push(arrA[i][j] - arrB[i][j]);
-                    }
-                }
+                result = _.zipWith(arrA,arrB,(a,b)=>{
+                    return _.zipWith(a,b,(m,n)=>m-n);
+                });
                 break;
             case '*':
-                for(let i=0; i<arrA.length; i++){
-                    result[i] = [];
-                    for(let j=0; j<arrA[0].length; j++){
-                        result[i].push(arrA[i][j] * arrB[i][j]);
-                        
-                    }
-                }
+                result = _.zipWith(arrA,arrB,(a,b)=>{
+                    return _.zipWith(a,b,(m,n)=>m*n);
+                });
                 break;
             case '/':
-                for(let i=0; i<arrA.length; i++){
-                    result[i] = [];
-                    for(let j=0; j<arrA[0].length; j++){
-                        result[i].push(arrA[i][j] / arrB[i][j]);
-                    }
-                }
+                result = _.zipWith(arrA,arrB,(a,b)=>{
+                    return _.zipWith(a,b,(m,n)=>m/n);
+                });
                 break;
             default:
                 return;
