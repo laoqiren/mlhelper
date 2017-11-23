@@ -49,6 +49,8 @@ Get the header line of the dataset.
 Get the last column of every line.
 
 ```js
+const parser = require('mlheper').utils.fileParser;
+
 let dt = parser.read_csv(path.join(__dirname,'../../../assets/train.csv'),{
     index_col: 0,
     delimiter: ',',

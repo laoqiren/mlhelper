@@ -63,6 +63,8 @@ Matrix Division.
 
 
 ```js
+const Matrix = require('mlhelper').utils.Matrix;
+
 const dataSet = [
     [2,4,6],
     [5,7,1],
