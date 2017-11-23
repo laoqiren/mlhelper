@@ -80,6 +80,8 @@ expect(result.toArray()).to.eql([
     [7,11,8],
     [6,8,9]
 ]);  // true;
+let matA = new Matrix(dataSet),
+    matB = new Matrix(dataSet2);
 
 expect(matA.max(1)).to.eql([6,7,3]);  //true
 expect(matA.max(0)).to.eql([5,7,6]);  //true
