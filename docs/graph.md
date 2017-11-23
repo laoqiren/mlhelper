@@ -29,6 +29,7 @@ charts.drawkNN(kNN.autoNormal(dataSet),labels,normalInx,{
     size: 15
 });
 ```
+![http://7xsi10.com1.z0.glb.clouddn.com/knngraph.png](http://7xsi10.com1.z0.glb.clouddn.com/knngraph.png)
 
 ## drawDT(tree: object,options: object)
 Decision tree visualization.
@@ -47,6 +48,7 @@ charts.drawDT(dt.getTree(),{
     height:400
 });
 ```
+![http://7xsi10.com1.z0.glb.clouddn.com/DT.png](http://7xsi10.com1.z0.glb.clouddn.com/DT.png)
 
 ## drawLogistic(dataSet: Array<Array\<number>>,labels: Array\<any>,weights: Array\<number>,options: object)
 Visualization of logistic regression algorithm
@@ -73,3 +75,5 @@ console.log(weights);
 
 charts.drawLogistic(dataSet,labels,weights)
 ```
+
+<img src="http://7xsi10.com1.z0.glb.clouddn.com/logistic.png" width="550px"/>
