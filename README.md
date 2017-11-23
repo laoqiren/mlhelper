@@ -2,61 +2,26 @@
 [![npm](https://img.shields.io/npm/v/mlhelper.svg?style=flat-square)](https://github.com/laoqiren/mlhelper)
 [![npm](https://img.shields.io/npm/l/mlhelper.svg?style=flat-square)](https://github.com/laoqiren/mlhelper)
 
-Algorithms and utils for Machine Learning in JavaScript.
+Algorithms and utils for Machine Learning in JavaScript based on Node.js. while implementing commonly used machine learning algorithms, This library attempts to provide more abundant ecology, such as matrix and vector operations, file parsing, feature engineering, data visualization, and so on.
 
-## Example
-
-### Install
+## Installation
 ```
 $ npm install mlhelper
 ```
 
+## Docoumention
+
+* [algorithm](docs/algorithm.md)
+* [Matrix](docs/Matrix.md)
+* [Vector](docs/Vector.md)
+* [file Parser](docs/fileParser.md)
+* [graph tools](docs/graph.md)
+* [feature Engineering](docs/features.md)
+
+## Example
+
 ### Algorithm
 
-**kNN:** 
-```js
-const kNN = require('mlhelper').algorithm.kNN;
-
-let knn = new kNN([
-    [1.,1.1],
-    [1.,1.],
-    [0.,0.],
-    [0.,0.1]
-],['A','A','B','C']);
-
-let result = knn.classify([1.1,0.8],4);
-
-console.log(result) // 'A'
-```
-
-**DT(ID3):**
-```js
-const mlhelper = require('mlhelper'),
-    DT = mlhelper.algorithm.DT,
-    parser = mlhelper.utils.fileParser;
-const path = require('path');
-
-let dataSet = parser.parseFile(path.join(__dirname,'./dt.txt'));
-
-let labels = ['age','prescript','astigmatic','tearRate']
-let dt = new DT(dataSet,labels);
-
-let result = dt.classify(labels,["young","myope","no","reduced"])
-
-console.log(dt.getTree()); // { tearRate: { reduced: 'no lenses', normal: { astigmatic: [Object] } } }
-console.log(result); // no lenses
-```
-
-**logistic regression**
-```js
-const logistic = require('mlhelper').algorithm.logistic;
-// to get dataSet and labels
-let l = new logistic(dataSet,labels,150);
-// get test inx data
-l.classify(inx);
-```
-
-**AdaBoost**
 ```js
 const AdaBoost = require('mlhelper').algorithm.AdaBoost;
 
@@ -169,8 +134,6 @@ charts.drawLogistic(dataSet,labels,weights);
 ```
 <img src="http://7xsi10.com1.z0.glb.clouddn.com/logistic.png" width="550px"/>
 
-## Docs
-[Documetation](docs/)  Still working...
 
 ## Contribute
 ### git clone 
@@ -186,6 +149,12 @@ npm install
 ```
 npm run dev
 ```
+
+### test
+```
+npm run test
+```
+
 ### build
 ```
 npm run build
