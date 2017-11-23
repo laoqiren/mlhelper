@@ -101,24 +101,6 @@ let testBinarizer = preprocessing.binarizer(dataSet);
 
 **graph tools:**
 
-kNN:
-```js
-const charts = require('mlhelper').utils.charts;
-let knn = new kNN(dataSet,labels);
-let inx = [7.0,0.27,0.36,20.7,0.045,45.0,170.0,1.001,3.0,0.45,8.8],
-    normalInx = knn.autoNormalVector(inx);
-
-console.log(knn.classify(inx,100)); // 6
-charts.drawkNN(kNN.autoNormal(dataSet),labels,normalInx,{
-    width: "500px",
-    height: "400px",
-    size: 15
-});
-```
-This will open your browser and draw dispersive points for kNN:
-
-![http://7xsi10.com1.z0.glb.clouddn.com/knngraph.png](http://7xsi10.com1.z0.glb.clouddn.com/knngraph.png)
-
 Decision Tree:
 ```js
 charts.drawDT(dt.getTree(),{
