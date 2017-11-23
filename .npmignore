@@ -6,3 +6,4 @@ tsconfig.json
 dist/maps/
 src/
 docs/
+test/
