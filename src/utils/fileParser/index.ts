@@ -91,6 +91,7 @@ class CSV {
     
 }
 
+export {CSV};
 /**
  * 读取csv文件 Read CSV file.
  * 
