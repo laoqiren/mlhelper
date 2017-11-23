@@ -136,6 +136,8 @@ charts.drawLogistic(dataSet,labels,weights);
 
 
 ## Contribute
+
+The original purpose of this project is to learn, and now I need more people to participate in this project, and any issue and good advice is welcome.
 ### git clone 
 ```
 git clone https://github.com/laoqiren/mlhelper.git
@@ -159,8 +161,7 @@ npm run test
 ```
 npm run build
 ```
-
-**Any ideas and issues is welcome! I need your help.**
 ## LICENSE
 MIT.
 
+*You can use the project for any purpose, except for illegal activities.*
