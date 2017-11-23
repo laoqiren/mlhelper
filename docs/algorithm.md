@@ -145,3 +145,13 @@ wiki: [https://en.wikipedia.org/wiki/K-means_clustering](https://en.wikipedia.or
 *max:* permission iterative number of times, default is 50.
 
 *return:* will return an array `[centroids,clusterAssment]`, the `centroids` is the coordinate matrix of all cluster centers and `clusterAssment` is an array `[centroidsIndex,minDist**2]`, `centroidsIndex` is the the index of the center to which the point belongs and `minDist` is the The distance between the point and its center.
+
+```js
+const kMeans = require('mlhelper').algorithm.kMeans;
+let kmeans = new kMeans(dataSet,5);
+
+let result = kmeans.cluster(40);
+console.log(util.inspect(result))
+```
+
+## TODO
