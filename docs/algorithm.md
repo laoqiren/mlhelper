@@ -2,20 +2,19 @@
 
 ## kNN (k-nearest neighbors algorithm)
 
+To learn kNN: [https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm](https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm)
 ### constructor(dataSet: Array<Array<number>>,labels: Array<any>)
 
-To learn kNN: [https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm](https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm)
+*dataSet:* The two dimensional array of data sets with known classifications.
 
-**dataSet**: The two dimensional array of data sets with known classifications.
-
-**labels**: Classification vector of dataset.
+*labels:* Classification vector of dataset.
 
 ### classify(inx: Array<number>,k: number): any
 Classification based on feature vectors.
 
-**inx**: data for testing.
+*inx:* data for testing.
 
-**k**: Make decisions based on K nearest neighbors.
+*k:*  Make decisions based on K nearest neighbors.
 
 ```js
 const kNN = require('mlhelper').algorithm.kNN;
