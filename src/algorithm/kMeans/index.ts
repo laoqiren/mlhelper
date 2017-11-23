@@ -25,7 +25,7 @@ class kMeans {
      */
     createCent(): Array<Array<number>>{
         let n = this.dataSet.size()[1];
-        let centroids = Matrix.zeros(this.k,n).arr;
+        let centroids = <Array<Array<number>>>Matrix.zeros(this.k,n);
 
         for(let j=0; j<n; j++){
             let minJ = this.dataSet.min()[j],
@@ -62,7 +62,7 @@ class kMeans {
     cluster(max=50 as number): [Array<Array<number>>,Array<Array<number>>]{
         let m = this.dataSet.size()[0],
             dataSet = this.dataSet.arr;
-        let clusterAssment = Matrix.zeros(m,2).arr, //各个实例的聚类结果，结果包含所属质心，和该实例到所属质心的距离
+        let clusterAssment = <Array<Array<number>>> Matrix.zeros(m,2), //各个实例的聚类结果，结果包含所属质心，和该实例到所属质心的距离
             centroids = this.createCent(), //存放各个质心向量
             clusterChanged = true, // 标识聚类情况发生变化，只要有一个实例的聚类发生变化，设为true
             k = this.k;  // 质心个数

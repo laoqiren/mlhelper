@@ -17,7 +17,7 @@ function autoNormal(dataSet: Matrix): [Array<Array<number>>,Array<number>,Array<
     let maxVals = dataSet.max(0); // 每个特征的最大值
     let ranges = new Vector(maxVals).zipWith((a,b)=>a-b,new Vector(minVals)); // 每个特征的范围
     
-    let normalDataSet = Matrix.zeros(...dataSet.size());
+    let normalDataSet = new Matrix(Matrix.zeros(...dataSet.size()));
     let setSize = dataSet.size()[0]; // 训练集实例数
     
     normalDataSet = dataSet.sub(new Matrix(Repeat(minVals,setSize).toArray())); //分子为每个特征原始值减去该特征最小值

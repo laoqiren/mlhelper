@@ -160,10 +160,10 @@ class Matrix {
         });
     }
     // 初始化零矩阵
-    static zeros(r: number,c?: number): Matrix{
-        return c?new Matrix(math.zeros(r,c)._data):new Matrix(math.zeros(r)._data);
+    static zeros(r: number,c?: number): Array<Array<number>>|Array<number>{
+        return c?math.zeros(r,c)._data:math.zeros(r)._data;
     }
-    static ones(m: number,n?: number){
+    static ones(m: number,n?: number): Array<Array<number>>|Array<number>{
         return n?math.ones(m,n)._data:math.ones(m)._data;
     }
     /**

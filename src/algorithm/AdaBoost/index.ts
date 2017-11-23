@@ -102,7 +102,7 @@ class AdaBoost {
         let m = dataMatrix.size()[0],
             D = Matrix.ones(m).map(v=>v/m);  //初始的特征权值向量
 
-        let aggClassEst = <Array<number>> Matrix.zeros(m).arr;
+        let aggClassEst = <Array<number>> Matrix.zeros(m);
 
         for(let i=0; i<numInt; i++){
             let [bestStump,error,classEst] = this.buildStump(D);
@@ -140,7 +140,7 @@ class AdaBoost {
     classify(inx: Array<Array<number>>): Array<number>{
         let dataMatrix = new Matrix(inx);
         let m = dataMatrix.size()[0];
-        let aggClassEst = <Array<number>> Matrix.zeros(m).arr;
+        let aggClassEst = <Array<number>> Matrix.zeros(m);
 
         // 组合所有弱分类器
         let classifierArr = this.adaBoostTrainDS();
