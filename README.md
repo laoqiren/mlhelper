@@ -119,7 +119,7 @@ charts.drawLogistic(dataSet,labels,weights);
 
 ## Contribute
 
-The original purpose of this project is to learn, and now I need more people to participate in this project, and any issue and good advice is welcome.
+The original purpose of this project is to learn, and now I need more people to participate in this project, and any issue and good advice is welcome. *`QQ group`: 485305514*
 ### git clone 
 ```
 git clone https://github.com/laoqiren/mlhelper.git
