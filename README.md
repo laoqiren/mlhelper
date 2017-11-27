@@ -4,6 +4,7 @@
 
 Algorithms and utils for Machine Learning in JavaScript based on Node.js. while implementing commonly used machine learning algorithms, This library attempts to provide more abundant ecology, such as matrix and vector operations, file parsing, feature engineering, data visualization, and so on.
 
+*`QQ Group`: 485305514*
 ## Installation
 ```
 $ npm install mlhelper
@@ -119,7 +120,7 @@ charts.drawLogistic(dataSet,labels,weights);
 
 ## Contribute
 
-The original purpose of this project is to learn, and now I need more people to participate in this project, and any issue and good advice is welcome. *`QQ group`: 485305514*
+The original purpose of this project is to learn, and now I need more people to participate in this project, and any issue and good advice is welcome.
 ### git clone 
 ```
 git clone https://github.com/laoqiren/mlhelper.git
