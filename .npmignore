@@ -7,3 +7,4 @@ dist/maps/
 src/
 docs/
 test/
+.DS_Store
