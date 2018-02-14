@@ -115,7 +115,7 @@ charts.drawDT(dt.getTree(),{
 ```js
 charts.drawLogistic(dataSet,labels,weights);
 ```
-<img src="http://7xsi10.com1.z0.glb.clouddn.com/logistic.png" width="550px"/>
+<img src="http://7xsi10.com1.z0.glb.clouddn.com/logistic2.png" width="550px"/>
 
 
 ## Contribute
