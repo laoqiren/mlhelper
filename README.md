@@ -10,7 +10,7 @@ Algorithms and utils for Machine Learning in JavaScript based on Node.js. while 
 $ npm install mlhelper
 ```
 
-## Docoumention
+## Documention
 
 * [algorithm](docs/algorithm.md)
 * [Matrix](docs/Matrix.md)
