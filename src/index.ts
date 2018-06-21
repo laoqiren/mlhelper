@@ -1,5 +1,5 @@
-import algorithm from './algorithm/index';
-import utils from './utils/index';
+import * as algorithm from './algorithm/index';
+import * as utils from './utils/index';
 
 export {
     algorithm,

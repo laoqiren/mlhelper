@@ -4,7 +4,7 @@ import logistic from './logistic/index';
 import AdaBoost from './AdaBoost/index';
 import kMeans from './kMeans/index';
 
-export default {
+export {
     kNN,
     DT,
     logistic,

@@ -4,7 +4,7 @@ import * as fileParser from './fileParser/index';
 import * as charts from './charts/index';
 import features from './features/index';
 
-export default {
+export {
     Matrix,
     Vector,
     fileParser,
