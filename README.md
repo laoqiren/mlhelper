@@ -24,7 +24,7 @@ $ npm install mlhelper
 ### Algorithm
 
 ```js
-const AdaBoost = require('mlhelper').algorithm.AdaBoost;
+const AdaBoost = require('mlhelper/algorithm').AdaBoost;
 
 const dataSet = [
     [1.0,2.1],
@@ -47,7 +47,7 @@ console.log(result); // [ 1, 1, -1, -1, -1 ]
 
 **Matrix:**
 ```js
-const Matrix = require('mlhelper').utils.Matrix;
+const Matrix = require('mlhelper/utils').Matrix;
 
 let m1 = new Matrix([
     [1,2,3],
@@ -65,7 +65,7 @@ console.log(m1.mult(m2)) // Matrix { arr: [ [ 2, 4, 18 ], [ 9, 4, 25 ] ] }
 
 **Vector:**
 ```js
-const Vector = require('mlhelper').utils.Vector;
+const Vector = require('mlhelper/utils').Vector;
 
 let v = new Vector([5,10,7,1]);
 console.log(v.argSort()) // [ 3, 0, 2, 1 ]
@@ -73,7 +73,7 @@ console.log(v.argSort()) // [ 3, 0, 2, 1 ]
 
 **fileParser:**
 ```js
-const parser = require('mlhelper').utils.fileParser;
+const parser = require('mlhelper/utils').fileParser;
 
 let dt = parser.read_csv(path.join(__dirname,'./train.csv'),{
     index_col: 0,
@@ -88,7 +88,7 @@ let dataSet =dt.drop('quality').values;
 **Feature Engineering**
 ```js
 // preprocessing features
-const preprocessing = require('mlhelper').utils.features.preprocessing;
+const preprocessing = require('mlhelper/utils').features.preprocessing;
 
 // make the features obey the standard normal distribution(Standardization)
 let testStandardScaler = preprocessing.standardScaler(dataSet);
