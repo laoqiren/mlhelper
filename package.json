@@ -6,7 +6,8 @@
   "scripts": {
     "test": "mocha --recursive",
     "dev": "gulp watch-ts",
-    "build": "gulp copyFiles && gulp build-ts"
+    "build": "gulp copyFiles && gulp build-ts",
+    "postversion": "git push && git push --tags"
   },
   "keywords": [
     "ML",
