@@ -1,4 +1,4 @@
-const parser = require('../../dist/index').utils.fileParser;
+const parser = require('../../lib/index').utils.fileParser;
 const CSV = parser.CSV;
 const path = require('path');
 const expect = require('chai').expect;

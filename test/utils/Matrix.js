@@ -1,4 +1,4 @@
-const Matrix = require('../../dist/index').utils.Matrix;
+const Matrix = require('../../lib/index').utils.Matrix;
 const expect = require('chai').expect;
 
 const dataSet = [

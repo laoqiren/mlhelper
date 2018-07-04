@@ -6,7 +6,7 @@ const babel = require('gulp-babel');
 
 const PATHS = {
     scripts: ['./src/**/*.ts'],
-    output: './dist'
+    output: './lib'
 }
 
 gulp.task('copyFiles',()=>{

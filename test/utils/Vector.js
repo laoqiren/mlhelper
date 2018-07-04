@@ -1,4 +1,4 @@
-const Vector = require('../../dist/index').utils.Vector;
+const Vector = require('../../lib/index').utils.Vector;
 const expect = require('chai').expect;
 
 const arr = [4,7,1,8,2];
