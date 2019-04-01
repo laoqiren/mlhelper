@@ -110,13 +110,13 @@ charts.drawDT(dt.getTree(),{
     height:400
 });
 ```
-![http://7xsi10.com1.z0.glb.clouddn.com/DT.png](http://7xsi10.com1.z0.glb.clouddn.com/DT.png)
+![/assets/DT.png](/assets/DT.png)
 
 **logistic regression**
 ```js
 charts.drawLogistic(dataSet,labels,weights);
 ```
-<img src="http://7xsi10.com1.z0.glb.clouddn.com/logistic2.png" width="550px"/>
+<img src="/assets/logistic2.png" width="550px"/>
 
 
 ## Contribute
